@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->enum('featured', ['yes', 'no']);
             $table->string('thumbnail_image');
             $table->string('quantity');
-            $table->integer('subcategory_id');
+            $table->integer('sub_category_id');
             $table->integer('category_id');
             $table->string('slug');
             $table->timestamps();

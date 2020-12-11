@@ -33,4 +33,5 @@ Route::get('/subcategories/{id}/delete', [SubCategoryController::class, 'delete'
 Route::resource('subcategories', SubCategoryController::class);
 
 // Product Controller 
+Route::get('/products/{id}/delete', [ProductController::class, 'delete'])->name('products.delete');
 Route::resource('products', ProductController::class);

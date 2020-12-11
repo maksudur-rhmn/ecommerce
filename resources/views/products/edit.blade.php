@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-Ecommerce - Products
+Ecommerce - {{ $product->name }}
 @endsection
 
 @section('meta_content')
@@ -18,7 +18,7 @@ mm-active
 @endsection
 
 @section('page-name')
-Products
+Products > {{ $product->name }}
 @endsection
 
 @section('breadcrumb')
@@ -74,18 +74,19 @@ Products
     <div class="col-xl-10 m-auto">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Add Products</h4>
-                <p class="card-title-desc">Add your desired products.
+                <h4 class="card-title">Edit Products</h4>
+                <p class="card-title-desc">Edit your desired products.
                 </p>
-                <form action="{{ route('products.store') }}" class="needs-validation" novalidate method="post"
+                <form action="{{ route('products.update', $product->id) }}" class="needs-validation" novalidate method="post"
                     enctype="multipart/form-data">
+                    {{ method_field('PUT') }}
                     @csrf
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group position-relative">
                                 <label for="validationTooltip03">Product name</label>
                                 <input name="name" type="text" class="form-control" id="validationTooltip03"
-                                    placeholder="Name" required>
+                                    value="{{ $product->name }}" required>
                                 <div class="invalid-tooltip">
                                     Please provide a valid product name.
                                 </div>
@@ -95,7 +96,7 @@ Products
                             <div class="form-group position-relative">
                                 <label for="validationTooltip03">Product price</label>
                                 <input name="price" type="text" class="form-control" id="validationTooltip03"
-                                    placeholder="Price" required>
+                                    value="{{ $product->price }}" required>
                                 <div class="invalid-tooltip">
                                     Please provide a valid product price.
                                 </div>
@@ -105,7 +106,7 @@ Products
                             <div class="form-group position-relative">
                                 <label for="disc">Product discount price (Optional)</label>
                                 <input name="discount_price" type="text" class="form-control" id="disc"
-                                    placeholder="Product Discount price">
+                                    value="{{ $product->discount_price }}">
                                 <div class="invalid-tooltip">
                                     Please provide a valid product price.
                                 </div>
@@ -115,7 +116,7 @@ Products
                             <div class="form-group position-relative">
                                 <label for="validationTooltip03">Product quantity</label>
                                 <input name="quantity" type="text" class="form-control" id="validationTooltip03"
-                                    placeholder="Product quantity" required>
+                                    value="{{ $product->quantity }}" required>
                                 <div class="invalid-tooltip">
                                     Please provide a valid product quantity.
                                 </div>
@@ -124,22 +125,24 @@ Products
                         <div class="col-md-12">
                             <div class="form-group position-relative">
                                 <label>Product colors (For e.g, red, green, blue)</label>
-                                <input name="colors" type="text" class="form-control" placeholder="Separate Colors with comma">
+                                <input name="colors" type="text" class="form-control" value="{{ $product->hasColors->colors }}">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group position-relative">
                                 <label>Product size (For e.g, S M L XL XXL XXL) (Optional)</label>
-                                <input name="size" type="text" class="form-control" placeholder="Product size">
+                                <input name="size" type="text" class="form-control" value="{{ $product->hasSizes->size }}">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group position-relative">
                                 <label for="validationTooltip03">Product category</label>
                                 <select name="category_id" class="form-control" id="validationTooltip03" required>
-                                    <option value=""> -Select Category- </option>
+                                    <option value="{{ $product->belongTo->hasCategory->id }}"> {{ $product->belongTo->hasCategory->name }} </option>
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ ucfirst($category->name) }}</option>
+                                        @if($product->belongTo->hasCategory->name != $category->name)
+                                          <option value="{{ $category->id }}">{{ ucfirst($category->name) }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                                 <div class="invalid-tooltip">
@@ -151,9 +154,11 @@ Products
                             <div class="form-group position-relative">
                                 <label for="validationTooltip03">Product sub category</label>
                                 <select name="sub_category_id" class="form-control" id="validationTooltip03" required>
-                                    <option value=""> -Select Sub Category- </option>
+                                    <option value="{{ $product->belongTo->id }}"> {{ $product->belongTo->name }} </option>
                                     @foreach ($subcategories as $subcategory)
-                                        <option value="{{ $subcategory->id }}">{{ ucfirst($subcategory->name) }}</option>
+                                        @if($product->belongTo->name != $subcategory->name)
+                                         <option value="{{ $subcategory->id }}">{{ ucfirst($subcategory->name) }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                                 <div class="invalid-tooltip">
@@ -165,7 +170,7 @@ Products
                             <div class="form-group position-relative">
                                 <label for="validationTooltip03">Product short description</label>
                                 <input id="x" type="hidden" name="short_desc" placeholder="Enter Short Description">
-                                <trix-editor input="x"></trix-editor>
+                                <trix-editor input="x">{!! $product->short_desc !!}</trix-editor>
                                 <div class="invalid-tooltip">
                                     Please provide a valid subcategory name.
                                 </div>
@@ -175,7 +180,7 @@ Products
                             <div class="form-group position-relative">
                                 <label for="validationTooltip03">Product long description</label>
                                 <input id="xx" type="hidden" name="long_desc" placeholder="Enter Detailed Description">
-                                <trix-editor input="xx"></trix-editor>
+                                <trix-editor input="xx">{!! $product->long_desc !!}</trix-editor>
                                 <div class="invalid-tooltip">
                                     Please provide a valid subcategory name.
                                 </div>
@@ -183,30 +188,34 @@ Products
                         </div>
                         <div class="col-md-12">
                             <div class="form-group position-relative">
-                                <label for="validationTooltip03">Thumbnail image</label>
-                                <input name="thumbnail_image" type="file" class="form-control" id="validationTooltip03"
-                                    placeholder="Name" required>
-                                <div class="invalid-tooltip">
-                                    Please provide a valid image.
-                                </div>
+                                <label>Thumbnail image</label>
+                                <input name="thumbnail_image" type="file" class="form-control">
                             </div>
+                        </div>
+                        <div class="py-5 text-center">
+                            <img src="{{ asset('uploads/products') }}/{{ $product->thumbnail_image }}" alt="not found" width="200">
                         </div>
                         <div class="col-md-12">
                             <div class="form-group position-relative">
-                                <label for="validationTooltip03">Multiple Image (Multiple images at once are allowed)</label>
-                                <input name="image[]" type="file" multiple class="form-control" id="validationTooltip03"
-                                    placeholder="Name" required>
-                                <div class="invalid-tooltip">
-                                    Please provide a valid image.
-                                </div>
+                                <label>Multiple Image (Multiple images at once are allowed)</label>
+                                <input name="image[]" type="file" multiple class="form-control">
                             </div>
+                        </div>
+                        <div class="py-5 text-center">
+                            @foreach ($product->hasImages as $image)
+                              <img src="{{ asset('uploads/product_multiple_image') }}/{{ $image->image }}" alt="not found" width="200">
+                            @endforeach
                         </div>
                         <div class="col-md-12">
                             <div class="form-group position-relative">
                                 <label for="validationTooltip03">Featured  (Featured products will always show on homepage featured section)</label>
                                 <select name="featured" class="form-control"  required>
+                                    <option value="{{ $product->featured }}">{{ $product->featured }}</option>
+                                    @if($product->featured == 'yes')
                                     <option value="no">No</option>
+                                    @else
                                     <option value="yes">Yes</option>
+                                    @endif
                                 </select>
                             </div>
                         </div>

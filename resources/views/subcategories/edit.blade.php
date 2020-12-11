@@ -36,36 +36,6 @@
 @endsection
 
 @section('content')
-    {{-- Error Message --}}
-    @if($errors->all())
-        <div class="alert alert-danger">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </div>
-    @endif
-
-    {{-- Success Message --}}
-    @if(session('success'))
-        <div class="aler alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    {{-- Info Message --}}
-    @if(session('info'))
-        <div class="alert alert-info">
-            {{ session('info') }}
-        </div>
-    @endif
-
-    {{-- Warning Message --}}
-    @if(session('warning'))
-        <div class="alert alert-warning">
-            {{ session('success') }}
-        </div>
-    @endif
-    
 <div class="row">
     <div class="col-xl-10 m-auto">
         <div class="card">

@@ -290,16 +290,7 @@
                                 <span>Sub category</span>
                             </a>
                         </li>
-                        <li class="products_menu_active">
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="uil-shop"></i>
-                                <span>Products</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="{{ route('products.create') }}">Add Products</a></li>
-                                <li><a href="{{ route('products.index') }}">All Products</a></li>
-                            </ul>
-                        </li>
+
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="uil-window-section"></i>

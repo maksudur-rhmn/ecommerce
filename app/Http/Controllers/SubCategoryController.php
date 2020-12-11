@@ -104,10 +104,20 @@ class SubCategoryController extends Controller
     // Custom Delete Method 
     public function delete($id)
     {
+
         $subCategory = SubCategory::findOrFail($id);
 
-        $subCategory->delete();
+        foreach($subCategory->hasProducts as $product)
+        {
+            if($product->count())
+            {
+              return back()->withErrors('The sub category has active products.Please delete the product in order to delete the sub category');
+            }
+        }
 
+        $subCategory->delete();
         return back()->withInfo('Sub Category deleted');
     }
+
+  // END  
 }
