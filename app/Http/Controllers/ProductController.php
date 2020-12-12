@@ -234,6 +234,8 @@ class ProductController extends Controller
                 ProductMultipleImage::where('product_id', $product->id)->delete();
             }
 
+        Size::where('product_id', $product->id)->delete();
+        Color::where('product_id', $product->id)->delete();
         $product->delete();
         return back()->withInfo('Product has been deleted');
 
