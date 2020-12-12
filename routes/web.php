@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
@@ -17,10 +19,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 // Dashboard Overview Controller
 Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 
@@ -34,4 +32,14 @@ Route::resource('subcategories', SubCategoryController::class);
 
 // Product Controller 
 Route::get('/products/{id}/delete', [ProductController::class, 'delete'])->name('products.delete');
+  //Ajax Route 
+Route::post('/get/sub/category', [ProductController::class, 'getSubCategory']);
 Route::resource('products', ProductController::class);
+
+// Faq Controller
+Route::get('/faq/{id}/delete', [FaqController::class, 'delete'])->name('faqs.delete');
+Route::resource('faqs', FaqController::class);
+
+
+// Frontend Controller
+Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');

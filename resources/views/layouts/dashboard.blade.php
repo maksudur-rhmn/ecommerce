@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="@yield('meta_content')" name="description" />
     <meta content="Digital Tech" name="author" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('dashboard_assets/images/favicon.ico') }}">
 
@@ -293,6 +294,24 @@
 
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="uil-shop"></i>
+                                <span>Products</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{ route('products.index') }}">Product list</a></li>
+                                <li><a href="{{ route('products.create') }}">Add Products</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="@yield('faqs_menu_active')">
+                            <a href="{{ route('faqs.index') }}">
+                                <i class="uil-file-question-alt"></i>
+                                <span>Faq</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="uil-window-section"></i>
                                 <span>Layouts</span>
                             </a>
@@ -305,7 +324,7 @@
                                 <li><a href="layouts-preloader.html">Preloader</a></li>
                                 <li><a href="layouts-colored-sidebar.html">Colored Sidebar</a></li>
                             </ul>
-                        </li>
+                    </li>
                     </ul>
                 </div>
                 <!-- Sidebar -->

@@ -41,7 +41,6 @@ class ProductController extends Controller
     {
         return view('products.create',[
             'categories'    => Category::orderBy('name', 'asc')->get(),
-            'subcategories' => SubCategory::all(),
         ]);
     }
 
@@ -57,7 +56,6 @@ class ProductController extends Controller
         $request->validate([
             'name'           => 'required',
             'price'          => 'required|numeric',
-            'discount_price' => 'numeric',
             'quantity'       => 'required|numeric',
             'category_id'    => 'required',
             'sub_category_id' => 'required', 
@@ -147,7 +145,6 @@ class ProductController extends Controller
         $request->validate([
             'name'           => 'required',
             'price'          => 'required|numeric',
-            'discount_price' => 'numeric',
             'quantity'       => 'required|numeric',
             'category_id'    => 'required',
             'sub_category_id'=> 'required', 
@@ -239,6 +236,19 @@ class ProductController extends Controller
         $product->delete();
         return back()->withInfo('Product has been deleted');
 
+    }
+
+    public function getSubCategory(Request $request)
+    {
+       $subcategories = SubCategory::where('category_id', $request->category_id)->get();
+
+        $data = "";
+        foreach($subcategories as $subcategory)
+        {
+           $data.= "<option value='". $subcategory->id ."'>". $subcategory->name ."</option>";
+        }
+
+        echo $data;
     }
 
   // END   

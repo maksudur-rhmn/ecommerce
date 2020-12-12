@@ -38,6 +38,7 @@ class ComposerStaticInit8ae6b004c7858ecfdf6be02723ef4462
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         '40275907c8566c390185147049ef6e5d' => __DIR__ . '/..' . '/livewire/livewire/src/helpers.php',
         '6b34c85f7b1ad6faa15aa12109e030f2' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/functions.php',
+        '577e8babc5e897de9cab73c9a71fdb59' => __DIR__ . '/../..' . '/app/Helper/helper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -591,6 +592,8 @@ class ComposerStaticInit8ae6b004c7858ecfdf6be02723ef4462
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoryController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\FaqController' => __DIR__ . '/../..' . '/app/Http/Controllers/FaqController.php',
+        'App\\Http\\Controllers\\FrontendController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontendController.php',
         'App\\Http\\Controllers\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductController.php',
         'App\\Http\\Controllers\\SubCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/SubCategoryController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -604,6 +607,7 @@ class ComposerStaticInit8ae6b004c7858ecfdf6be02723ef4462
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Color' => __DIR__ . '/../..' . '/app/Models/Color.php',
+        'App\\Models\\Faq' => __DIR__ . '/../..' . '/app/Models/Faq.php',
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
         'App\\Models\\ProductMultipleImage' => __DIR__ . '/../..' . '/app/Models/ProductMultipleImage.php',
         'App\\Models\\Size' => __DIR__ . '/../..' . '/app/Models/Size.php',

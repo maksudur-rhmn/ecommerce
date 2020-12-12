@@ -37,6 +37,35 @@ Products
 <script src="{{ asset('dashboard_assets/js/pages/form-validation.init.js') }}"></script>
 <!-- trix -->
 
+<script>
+    $(document).ready(function(){
+       $("#category").change(function(){
+           var category_id = $(this).val();
+           // Ajax Setup Starts
+       $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+        });
+         // Ajax Setup Ends
+
+         // Ajax Request Starts
+
+            $.ajax({
+                type:'POST',
+                url:'/get/sub/category',
+                data:{category_id:category_id},
+                success:function(data){
+                    $("#subcategory").html(data);
+                }
+            });
+            
+
+         // Ajax Request Ends
+       });
+    });
+</script>
+
 @endsection
 
 @section('content')
@@ -135,8 +164,8 @@ Products
                         </div>
                         <div class="col-md-12">
                             <div class="form-group position-relative">
-                                <label for="validationTooltip03">Product category</label>
-                                <select name="category_id" class="form-control" id="validationTooltip03" required>
+                                <label for="category">Product category</label>
+                                <select name="category_id" class="form-control" id="category" required>
                                     <option value=""> -Select Category- </option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ ucfirst($category->name) }}</option>
@@ -149,12 +178,9 @@ Products
                         </div>
                         <div class="col-md-12">
                             <div class="form-group position-relative">
-                                <label for="validationTooltip03">Product sub category</label>
-                                <select name="sub_category_id" class="form-control" id="validationTooltip03" required>
+                                <label for="subcategory">Product sub category</label>
+                                <select name="sub_category_id" class="form-control" id="subcategory" required>
                                     <option value=""> -Select Sub Category- </option>
-                                    @foreach ($subcategories as $subcategory)
-                                        <option value="{{ $subcategory->id }}">{{ ucfirst($subcategory->name) }}</option>
-                                    @endforeach
                                 </select>
                                 <div class="invalid-tooltip">
                                     Please provide a valid subcategory name.
@@ -167,7 +193,7 @@ Products
                                 <input id="x" type="hidden" name="short_desc" placeholder="Enter Short Description">
                                 <trix-editor input="x"></trix-editor>
                                 <div class="invalid-tooltip">
-                                    Please provide a valid subcategory name.
+                                    Please provide a valid short description.
                                 </div>
                             </div>
                         </div>
@@ -177,7 +203,7 @@ Products
                                 <input id="xx" type="hidden" name="long_desc" placeholder="Enter Detailed Description">
                                 <trix-editor input="xx"></trix-editor>
                                 <div class="invalid-tooltip">
-                                    Please provide a valid subcategory name.
+                                    Please provide a valid Long description.
                                 </div>
                             </div>
                         </div>
