@@ -43,3 +43,7 @@ Route::resource('faqs', FaqController::class);
 
 // Frontend Controller
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
+Route::get('/all/{name}/products', [FrontendController::class, 'products'])->name('frontend.products');
+Route::get('/l2h/{name}/products', [FrontendController::class, 'lowToHigh'])->name('frontend.lowToHigh');
+Route::get('/h2l/{name}/products', [FrontendController::class, 'HighToLow'])->name('frontend.highToLow');
+Route::get('/product/details/{slug}', [FrontendController::class, 'productDetails'])->name('frontend.productDetails');

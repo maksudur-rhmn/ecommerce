@@ -75,10 +75,10 @@
                                     <ul class="sub-menu">
                                         @foreach (categories() as $category)
                                         <li class="menu-item-has-children">
-                                            <a href="#">{{ $category->name }}</a>
+                                            <a href="{{ route('frontend.products', $category->name) }}">{{ $category->name }}</a>
                                             <ul class="sub-menu">
                                                 @foreach ($category->hasSubCategory as $subcategory)    
-                                                  <li><a href="shop.html">{{ $subcategory->name }}</a></li>
+                                                  <li><a href="">{{ $subcategory->name }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </li>
@@ -202,11 +202,11 @@
                                 <nav>
                                     <ul>
                                         <li><a class="active" href="{{ route('frontend.index') }}">home</a></li>
-                                        <li class="mega_items"><a href="shop.html">shop<i class="fa fa-angle-down"></i></a>
+                                        <li class="mega_items"><a href="">shop<i class="fa fa-angle-down"></i></a>
                                             <div class="mega_menu">
                                                 <ul class="mega_menu_inner">
                                                   @foreach (categories() as $category)
-                                                  <li><a href="#">{{ ucfirst($category->name) }}</a>
+                                                  <li><a href="{{ route('frontend.products', $category->name) }}">{{ ucfirst($category->name) }}</a>
                                                         <ul>
                                                             @foreach ($category->hasSubCategory as $subcategory)
                                                             <li><a href="shop-fullwidth.html">{{ ucfirst($subcategory->name) }}</a></li>
@@ -218,7 +218,7 @@
                                                 <div class="mega_menu_banner">
                                                     @foreach (categories() as $category)
                                                     <div class="banner_menu_thumb">
-                                                        <a href="#"><img src="{{ asset('uploads/categories') }}/{{ $category->image }}" alt=""style="width:200px; height:96px;"></a>
+                                                        <a href="{{ route('frontend.products', $category->name) }}"><img src="{{ asset('uploads/categories') }}/{{ $category->image }}" alt=""style="width:200px; height:96px;"></a>
                                                     </div>
                                                     @endforeach
                                                 </div>
@@ -554,92 +554,6 @@
     </footer>
     <!--footer area end-->
 
-    <!-- modal area start-->
-   @foreach ($products as $product)
-   <div class="modal fade" id="modal_box{{ $product->id }}" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true"><i class="fas fa-times"></i></span>
-            </button>
-            <div class="modal_body">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-12">
-                            <div class="modal_tab">
-                                <div class="tab-content product-details-large">
-                                    <div class="tab-pane fade show active" id="tab1" role="tabpanel">
-                                        <div class="modal_tab_img">
-                                            <a href="#"><img src="{{ asset('uploads/products') }}/{{ $product->thumbnail_image }}" alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-7 col-md-7 col-sm-12">
-                            <div class="modal_right">
-                                <div class="modal_title mb-10">
-                                    <h2>{{ ucfirst($product->name) }}</h2>
-                                </div>
-                                <div class="modal_price mb-10">
-                                   @if($product->discount_price)
-                                   <span class="new_price">BDT @convert($product->discount_price)</span>
-                                   <span class="old_price">BDT @convert($product->price)</span>
-                                   @else 
-                                   <span class="new_price">BDT @convert($product->price)</span>
-                                   @endif
-                                </div>
-                                <div class="modal_description mb-15">
-                                   {!! $product->short_desc !!}
-                                </div>
-                                <div class="variants_selects">
-                                    <div class="variants_size">
-                                        <h2>size</h2>
-                                        <select class="select_option">
-                                            @if($product->hasSizes->size != "")
-                                            @foreach(explode(' ', $product->hasSizes->size) as $info) 
-                                            <option value="{{ $info }}">{{ ucfirst($info) }}</option>
-                                            @endforeach
-                                            @endif
-                                        </select>
-                                    </div>
-                                    <div class="variants_color">
-                                        <h2>color</h2>
-                                        <select class="select_option">
-                                            @if($product->hasColors->colors != "")
-                                            @foreach(explode(',', $product->hasColors->colors) as $info) 
-                                            <option value="{{ $info }}">{{ ucfirst($info) }}</option>
-                                            @endforeach
-                                            @endif
-                                        </select>
-                                    </div>
-                                    <div class="modal_add_to_cart">
-                                        <form action="#">
-                                            <input min="1" max="100" step="2" value="1" type="number">
-                                            <button type="submit">add to cart</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="modal_social">
-                                    <h2>Share this product</h2>
-                                     <ul>
-                                        <li class="facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li class="twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li class="pinterest"><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                                        <li class="google-plus"><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                        <li class="linkedin"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                    </ul> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-   @endforeach
-    <!-- modal area end-->
 
     <!--news letter popup start-->
     {{-- <div class="newletter-popup">
