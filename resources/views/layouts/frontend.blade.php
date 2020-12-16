@@ -163,7 +163,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-4 col-5">
                             <div class="logo">
                                 
-                                <a href="index.html"><img src="{{ asset('frontend_assets/img/logo/logo.png') }}" alt=""></a>
+                                <a href="{{ route('frontend.index') }}"><img src="{{ asset('frontend_assets/img/logo/logo.png') }}" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-4 col_search">
@@ -185,7 +185,7 @@
                                 <div class="mini_cart_wrapper">
                                     <a href="javascript:void(0)"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                         <span class="cartitems"> Cart Items</span>
-                                        <span class="item_count">2</span>
+                                        <span class="item_count">{{ cartCount() }}</span>
                                     </a>
                                 </div>
                             </div>
@@ -263,46 +263,42 @@
                         <a href="javascript:void(0)"><i class="fas fa-times"></i></a>
                     </div>
                 </div>
+                @foreach (cartItems() as $item)
                 <div class="cart_item">
                     <div class="cart_img">
-                        <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
+                        <a href="{{ route('frontend.productDetails', $item->get_product->slug) }}"><img src="{{ asset('uploads/products') }}/{{ $item->get_product->thumbnail_image }}" alt=""></a>
                     </div>
                     <div class="cart_info">
-                        <a href="#">Juicy Couture Tricot</a>
-                        <p>1 x <span> $30.00 </span></p>
+                        <a href="{{ route('frontend.productDetails', $item->get_product->slug) }}">{{ $item->get_product->name }}</a>
+                        <p>{{ $item->cart_amount }} x <span> 
+                            @if($item->get_product->discount_price)
+                             BDT @convert($item->get_product->discount_price)
+                            @else 
+                             BDT @convert($item->get_product->price)
+                            @endif
+                        </span></p>
                     </div>
                     <div class="cart_remove">
-                        <a href="#"><i class="ion-ios-close-outline"></i></a>
+                        <a href="{{ route('cart.delete', $item->id) }}"><i class="ion-ios-close-outline"></i></a>
                     </div>
                 </div>
-                <div class="cart_item">
-                    <div class="cart_img">
-                        <a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a>
-                    </div>
-                    <div class="cart_info">
-                        <a href="#">Juicy Couture Juicy</a>
-                        <p>1 x <span> $29.00 </span></p>
-                    </div>
-                    <div class="cart_remove">
-                        <a href="#"><i class="ion-ios-close-outline"></i></a>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="mini_cart_table">
                 <div class="cart_table_border">
                     <div class="cart_total">
                         <span>Sub total:</span>
-                        <span class="price">$125.00</span>
+                        <span class="price">BDT @convert(cartTotal())</span>
                     </div>
                     <div class="cart_total mt-10">
                         <span>total:</span>
-                        <span class="price">$125.00</span>
+                        <span class="price">BDT @convert(cartTotal())</span>
                     </div>
                 </div>
             </div>
             <div class="mini_cart_footer">
                 <div class="cart_button">
-                    <a href="cart.html"><i class="fa fa-shopping-cart"></i> View cart</a>
+                    <a href="{{ route('cart.index') }}"><i class="fa fa-shopping-cart"></i> View cart</a>
                 </div>
                 <div class="cart_button">
                     <a class="active" href="checkout.html"><i class="fa fa-sign-in"></i> Checkout</a>
@@ -312,7 +308,11 @@
         </div>
         <!--mini cart end-->
     </header>
-
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
     @yield('content')
 
      <!--footer area start-->
@@ -326,7 +326,7 @@
                                 <h3>about us</h3>
                             </div>
                             <div class="footer_logo">
-                                <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                <a href="{{ route('frontend.index') }}"><img src="assets/img/logo/logo.png" alt=""></a>
                             </div>
                             <div class="footer_desc">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elitse do eiusmod tempor incididunt ut labore et dolore.</p>
@@ -466,7 +466,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer_middle">
+        {{-- <div class="footer_middle">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-4 col-sm-6">
@@ -534,13 +534,13 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="footer_bottom">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-7">
                         <div class="copyright_area">
-                            <p>Copyright © 2020 <a href="index.html">Classico</a>. <a href="https://hasthemes.com/" target="_blank">All rights reserved.</a></p>
+                            <p>Copyright © 2020 <a href="{{ route('frontend.index') }}">Classico</a>. <a href="https://hasthemes.com/" target="_blank">All rights reserved.</a></p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-5">
@@ -621,6 +621,8 @@
 
     <!-- Main JS -->
     <script src="{{ asset('frontend_assets/js/main.js') }}"></script>
+
+    @yield('custom-js')
 </body>
 
 </html>

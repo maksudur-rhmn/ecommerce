@@ -23,6 +23,13 @@ class FrontendController extends Controller
 
      return view('frontend.products', compact('category', 'products'));
    }
+   public function productsAll()
+   {
+     
+     $products = Product::latest()->paginate(20);
+
+     return view('frontend.products', compact('products'));
+   }
 //    public function lowToHigh($name)
 //    {
 //      $category = Category::where('name', $name)->first();

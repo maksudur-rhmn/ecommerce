@@ -74,7 +74,7 @@
                                     <P>Shop the</P>
                                     <p>latest</p>
                                 </li>
-                                <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i></a></li>
+                                <li><a href="{{ route('frontend.productsAll') }}"><i class="fas fa-long-arrow-alt-right"></i></a></li>
                             </ul>
                         </div>
                         <img class="beautify_1" src="{{ asset('frontend_assets/img/beautify/beautify-2-01.png') }}" alt="">
@@ -92,7 +92,7 @@
                                         <article class="single_product">
                                             <figure>
                                                 <div class="product_thumb">
-                                                    <a class="primary_img" href="product-details.html"><img src="{{ asset('uploads/products') }}/{{ $product->thumbnail_image }}" alt="" style="width:217px; height:217px;"></a>
+                                                    <a class="primary_img" href="{{ route('frontend.productDetails', $product->slug) }}"><img src="{{ asset('uploads/products') }}/{{ $product->thumbnail_image }}" alt="" style="width:217px; height:217px;"></a>
                                                     <div class="label_product">
                                                         @if($product->discount_price)
                                                         <span class="label_sale">Sale</span>
@@ -106,7 +106,7 @@
                                                     </div>
                                                 </div>
                                                 <figcaption class="product_content">
-                                                    <h4 class="product_name"><a href="product-details.html">{{ ucfirst($product->name) }}</a></h4>
+                                                    <h4 class="product_name"><a href="{{ route('frontend.productDetails', $product->slug) }}">{{ ucfirst($product->name) }}</a></h4>
                                                     <div class="product_rating">
                                                         <ul>
                                                             <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
@@ -125,8 +125,23 @@
                                                        @endif
                                                     </div>
                                                     <div class="add_to_cart">
-                                                        <a href="cart.html" title="Add to cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</a>
+                                                        <form action="{{ route('cart.store') }}" method="post">
+                                                            @csrf
+                                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                            <input type="hidden" name="cart_amount" value="1">
+                                                        <button style="
+                                                            line-height: 45px;
+                                                            height: 45px;
+                                                            display: inline-block;
+                                                            font-size: 13px;
+                                                            font-weight: 400;
+                                                            text-transform: uppercase;
+                                                            padding: 0 30px;
+                                                            width: 100%;
+                                                            background: #999999;
+                                                            color: #fff;" type="submit" title="Add to cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</button>
                                                     </div>
+                                                </form>
                                                 </figcaption>
                                             </figure>
                                         </article>
@@ -176,7 +191,7 @@
                                         <article class="single_product">
                                             <figure>
                                                 <div class="product_thumb">
-                                                    <a class="primary_img" href="product-details.html"><img src="{{ asset('uploads/products') }}/{{ $product->thumbnail_image }}" alt="" style="width:217px; height:217px;"></a>
+                                                    <a class="primary_img" href="{{ route('frontend.productDetails', $product->slug) }}"><img src="{{ asset('uploads/products') }}/{{ $product->thumbnail_image }}" alt="" style="width:217px; height:217px;"></a>
                                                     <div class="label_product">
                                                         @if($product->discount_price)
                                                         <span class="label_sale">Sale</span>
@@ -190,7 +205,7 @@
                                                     </div>
                                                 </div>
                                                 <figcaption class="product_content">
-                                                    <h4 class="product_name"><a href="product-details.html">{{ ucfirst($product->name) }}</a></h4>
+                                                    <h4 class="product_name"><a href="{{ route('frontend.productDetails', $product->slug) }}">{{ ucfirst($product->name) }}</a></h4>
                                                     <div class="product_rating">
                                                         <ul>
                                                             <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
@@ -209,7 +224,22 @@
                                                        @endif
                                                     </div>
                                                     <div class="add_to_cart">
-                                                        <a href="cart.html" title="Add to cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</a>
+                                                        <form method="POST" action="{{ route('cart.store') }}">
+                                                            @csrf
+                                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                            <input type="hidden" name="cart_amount" value="1">
+                                                            <button style="
+                                                            line-height: 45px;
+                                                            height: 45px;
+                                                            display: inline-block;
+                                                            font-size: 13px;
+                                                            font-weight: 400;
+                                                            text-transform: uppercase;
+                                                            padding: 0 30px;
+                                                            width: 100%;
+                                                            background: #999999;
+                                                            color: #fff;" type="submit"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</button>
+                                                            </form>
                                                     </div>
                                                 </figcaption>
                                             </figure>
@@ -227,7 +257,7 @@
                                         <article class="single_product">
                                             <figure>
                                                 <div class="product_thumb">
-                                                    <a class="primary_img" href="product-details.html"><img src="{{ asset('uploads/products') }}/{{ $product->thumbnail_image }}" alt="" style="width:217px; height:217px;"></a>
+                                                    <a class="primary_img" href="{{ route('frontend.productDetails', $product->slug) }}"><img src="{{ asset('uploads/products') }}/{{ $product->thumbnail_image }}" alt="" style="width:217px; height:217px;"></a>
                                                     <div class="label_product">
                                                         @if($product->discount_price)
                                                         <span class="label_sale">Sale</span>
@@ -241,7 +271,7 @@
                                                     </div>
                                                 </div>
                                                 <figcaption class="product_content">
-                                                    <h4 class="product_name"><a href="product-details.html">{{ ucfirst($product->name) }}</a></h4>
+                                                    <h4 class="product_name"><a href="{{ route('frontend.productDetails', $product->slug) }}">{{ ucfirst($product->name) }}</a></h4>
                                                     <div class="product_rating">
                                                         <ul>
                                                             <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
@@ -260,7 +290,22 @@
                                                        @endif
                                                     </div>
                                                     <div class="add_to_cart">
-                                                        <a href="cart.html" title="Add to cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</a>
+                                                        <form method="POST" action="{{ route('cart.store') }}">
+                                                        @csrf
+                                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                        <input type="hidden" name="cart_amount" value="1">
+                                                        <button style="
+                                                        line-height: 45px;
+                                                        height: 45px;
+                                                        display: inline-block;
+                                                        font-size: 13px;
+                                                        font-weight: 400;
+                                                        text-transform: uppercase;
+                                                        padding: 0 30px;
+                                                        width: 100%;
+                                                        background: #999999;
+                                                        color: #fff;" type="submit"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</button>
+                                                        </form>
                                                     </div>
                                                 </figcaption>
                                             </figure>
@@ -279,7 +324,7 @@
                                         <article class="single_product">
                                             <figure>
                                                 <div class="product_thumb">
-                                                    <a class="primary_img" href="product-details.html"><img src="{{ asset('uploads/products') }}/{{ $product->thumbnail_image }}" alt="" style="width:217px; height:217px;"></a>
+                                                    <a class="primary_img" href="{{ route('frontend.productDetails', $product->slug) }}"><img src="{{ asset('uploads/products') }}/{{ $product->thumbnail_image }}" alt="" style="width:217px; height:217px;"></a>
                                                     <div class="label_product">
                                                         @if($product->discount_price)
                                                         <span class="label_sale">Sale</span>
@@ -293,7 +338,7 @@
                                                     </div>
                                                 </div>
                                                 <figcaption class="product_content">
-                                                    <h4 class="product_name"><a href="product-details.html">{{ ucfirst($product->name) }}</a></h4>
+                                                    <h4 class="product_name"><a href="{{ route('frontend.productDetails', $product->slug) }}">{{ ucfirst($product->name) }}</a></h4>
                                                     <div class="product_rating">
                                                         <ul>
                                                             <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
@@ -312,7 +357,22 @@
                                                        @endif
                                                     </div>
                                                     <div class="add_to_cart">
-                                                        <a href="cart.html" title="Add to cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</a>
+                                                        <form method="POST" action="{{ route('cart.store') }}">
+                                                            @csrf
+                                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                            <input type="hidden" name="cart_amount" value="1">
+                                                            <button style="
+                                                            line-height: 45px;
+                                                            height: 45px;
+                                                            display: inline-block;
+                                                            font-size: 13px;
+                                                            font-weight: 400;
+                                                            text-transform: uppercase;
+                                                            padding: 0 30px;
+                                                            width: 100%;
+                                                            background: #999999;
+                                                            color: #fff;" type="submit"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</button>
+                                                        </form>
                                                     </div>
                                                 </figcaption>
                                             </figure>
@@ -345,7 +405,7 @@
                                             <p>Shop All</p>
                                             <p>Categories</p>
                                         </li>
-                                        <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i></a></li>
+                                        <li><a href="{{ route('frontend.productsAll') }}"><i class="fas fa-long-arrow-alt-right"></i></a></li>
                                     </ul>
                                     <img class="img_bottom" src="{{ asset('frontend_assets/img/beautify/beautify-2-01.png') }}" alt="">
                                 </div>
@@ -353,7 +413,7 @@
                             @foreach (categories() as $category)
                             <div class="col-lg-3">
                                 <div class="card">
-                                    <a href="#">
+                                    <a href="{{ route('frontend.products', $category->name) }}">
                                         <img src="{{ asset('uploads/categories') }}/{{ $category->image }}" alt="">
                                    </a>
                                    <div class="band">
@@ -388,7 +448,7 @@
                             <article class="single_product">
                                 <figure>
                                     <div class="product_thumb">
-                                        <a class="primary_img" href="product-details.html"><img src="{{ asset('uploads/products') }}/{{ $product->thumbnail_image }}" alt="" style="width:217px; height:217px;"></a>
+                                        <a class="primary_img" href="{{ route('frontend.productDetails', $product->slug) }}"><img src="{{ asset('uploads/products') }}/{{ $product->thumbnail_image }}" alt="" style="width:217px; height:217px;"></a>
                                         <div class="label_product">
                                             @if($product->discount_price)
                                             <span class="label_sale">Sale</span>
@@ -402,7 +462,7 @@
                                         </div>
                                     </div>
                                     <figcaption class="product_content">
-                                        <h4 class="product_name"><a href="product-details.html">{{ ucfirst($product->name) }}</a></h4>
+                                        <h4 class="product_name"><a href="{{ route('frontend.productDetails', $product->slug) }}">{{ ucfirst($product->name) }}</a></h4>
                                         <div class="product_rating">
                                             <ul>
                                                 <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
@@ -421,7 +481,22 @@
                                            @endif
                                         </div>
                                         <div class="add_to_cart">
-                                            <a href="cart.html" title="Add to cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</a>
+                                            <form method="POST" action="{{ route('cart.store') }}">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                <input type="hidden" name="cart_amount" value="1">
+                                                <button style="
+                                                line-height: 45px;
+                                                height: 45px;
+                                                display: inline-block;
+                                                font-size: 13px;
+                                                font-weight: 400;
+                                                text-transform: uppercase;
+                                                padding: 0 30px;
+                                                width: 100%;
+                                                background: #999999;
+                                                color: #fff;" type="submit"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</button>
+                                            </form>
                                         </div>
                                     </figcaption>
                                 </figure>
