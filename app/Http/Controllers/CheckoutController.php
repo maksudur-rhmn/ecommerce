@@ -31,7 +31,7 @@ class CheckoutController extends Controller
             'zip_code'        => 'required',
         ]);
 
-        $order = Order::create($request->except('_token') + ['user_id' => Auth::id() ?? '', 'created_at' => Carbon::now()]);
+        $order = Order::create($request->except('_token') + ['user_id' => Auth::id() ?? 0, 'created_at' => Carbon::now()]);
         foreach(cartItems() as $item)
         {
             Order_list::insert([
