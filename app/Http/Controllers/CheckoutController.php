@@ -36,7 +36,7 @@ class CheckoutController extends Controller
         {
             Order_list::insert([
                 'order_id'   => $order->id,
-                'user_id'    => Auth::id() ?? '',
+                'user_id'    => Auth::id() ?? 0,
                 'product_id' => $item->product_id,
                 'amount'     => $item->cart_amount,
                 'created_at' => Carbon::now(),
