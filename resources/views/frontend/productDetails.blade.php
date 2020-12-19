@@ -51,7 +51,6 @@
                 </div>
                 <div class="col-lg-7 col-md-7">
                     <div class="product_d_right">
-                        <form action="#">
                             <div class="productd_title_nav">
                                 <h1><a href="#">{{ $product->name }}</a></h1>
                             </div>
@@ -111,18 +110,19 @@
                                 </select>
                             </div>
                             <div class="product_variant quantity">
+                                <form method="POST" action="{{ route('cart.store') }}">
+                                    @csrf
                                 <label>quantity</label>
-                                <input min="1" max="100" value="1" type="number">
+                                <input min="1" max="100" value="1" type="number" name="cart_amount">
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
                                 <button class="button" type="submit">add to cart</button>
-
+                                </form>
                             </div>
                             <div class=" product_d_action">
                                 <ul>
                                     <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
                                 </ul>
                             </div>
-
-                        </form>
 
                         <div class="product_d_meta">
                             <span>SKU: N/A</span>
@@ -313,7 +313,22 @@
                                        @endif
                                     </div>
                                     <div class="add_to_cart">
-                                        <a href="cart.html" title="Add to cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</a>
+                                        <form method="POST" action="{{ route('cart.store') }}">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <input type="hidden" name="cart_amount" value="1">
+                                            <button style="
+                                            line-height: 45px;
+                                            height: 45px;
+                                            display: inline-block;
+                                            font-size: 13px;
+                                            font-weight: 400;
+                                            text-transform: uppercase;
+                                            padding: 0 30px;
+                                            width: 100%;
+                                            background: #999999;
+                                            color: #fff;" type="submit"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</button>
+                                        </form>
                                     </div>
                                 </figcaption>
                             </figure>

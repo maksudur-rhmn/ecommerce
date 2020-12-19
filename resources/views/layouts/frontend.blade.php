@@ -301,7 +301,7 @@
                     <a href="{{ route('cart.index') }}"><i class="fa fa-shopping-cart"></i> View cart</a>
                 </div>
                 <div class="cart_button">
-                    <a class="active" href="checkout.html"><i class="fa fa-sign-in"></i> Checkout</a>
+                    <a class="active" href="{{ route('checkout.index') }}"><i class="fa fa-sign-in"></i> Checkout</a>
                 </div>
 
             </div>
