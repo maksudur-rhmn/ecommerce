@@ -177,7 +177,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-5 col-4">
                             <div class="cart_wishlist_area">
                                 <div class="header_wishlist">
-                                    <a href="wishlist.html"><i class="far fa-heart" aria-hidden="true"></i>
+                                    <a href="{{ route('wishlist.index') }}"><i class="far fa-heart" aria-hidden="true"></i>
                                         <span class="item_count">{{ wishlistCount() }}</span>
                                     </a>
                                 </div>
