@@ -219,9 +219,14 @@
                             <a class="dropdown-item" href="#"><i
                                     class="uil uil-lock-alt font-size-18 align-middle mr-1 text-muted"></i> <span
                                     class="align-middle">Lock screen</span></a>
-                            <a class="dropdown-item" href="#"><i
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();"><i
                                     class="uil uil-sign-out-alt font-size-18 align-middle mr-1 text-muted"></i> <span
                                     class="align-middle">Sign out</span></a>
+                                    </form>
                         </div>
                     </div>
 
@@ -269,6 +274,13 @@
                     <!-- Left Menu Start -->
                     <ul class="metismenu list-unstyled" id="side-menu">
                         <li class="menu-title">Menu</li>
+
+                        <li>
+                            <a href="{{ url('/') }}">
+                                <i class="fas fa-globe"></i>
+                                <span>Visit Darcheni</span>
+                            </a>
+                        </li>
 
                         <li class="@yield('dashboard_menu_active')">
                             <a href="{{ route('dashboard') }}">

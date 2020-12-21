@@ -9,6 +9,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,6 +59,9 @@ Route::get('/cart/{coupon_name}', [CartController::class, 'index']);
 Route::any('/cart/store', [CartController::class, 'store'])->name('cart.store');
 Route::get('/cart/{cart_id}/delete', [CartController::class, 'delete'])->name('cart.delete');
 Route::post('/cart/update', [CartController::class, 'cartUpdate'])->name('cart.custom.update');
+
+// Wishlist Controller 
+Route::resource('wishlist', WishlistController::class);
 
 // Coupon Controller 
 Route::resource('coupon', CouponController::class);

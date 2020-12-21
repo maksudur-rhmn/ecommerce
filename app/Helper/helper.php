@@ -9,6 +9,11 @@ function cartCount()
    return App\Models\Cart::where('ip_address', request()->ip())->count();
 }
 
+function wishlistCount()
+{
+  return App\Models\Wishlist::where('ip_address', request()->ip())->count();
+}
+
 function cartItems()
 {
   return App\Models\Cart::where('ip_address', request()->ip())->get();

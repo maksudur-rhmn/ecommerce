@@ -101,7 +101,14 @@
                                                     <div class="action_links">
                                                         <ul>
                                                             <li class="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box{{ $product->id }}" title="quick view"> <i class="fa fa-eye" aria-hidden="true"></i></a></li>
-                                                            <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i class="far fa-heart" aria-hidden="true"></i></a></li>
+                                                            <li class="wishlist">
+                                                                <form action="{{ route('wishlist.store') }}" method="POST">
+                                                                    @csrf 
+                                                                        <input type="hidden" name="product_id" value="{{ $product->id }}"> 
+                                                                        <a href="{{ route('wishlist.store') }}"onclick="event.preventDefault();
+                                                                        this.closest('form').submit();"><i class="far fa-heart" aria-hidden="true"></i></a>
+                                                                    </form>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -200,7 +207,14 @@
                                                     <div class="action_links">
                                                         <ul>
                                                             <li class="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box{{ $product->id }}" title="quick view"> <i class="fa fa-eye" aria-hidden="true"></i></a></li>
-                                                            <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i class="far fa-heart" aria-hidden="true"></i></a></li>
+                                                            <li class="wishlist">
+                                                                <form action="{{ route('wishlist.store') }}" method="POST">
+                                                                    @csrf 
+                                                                        <input type="hidden" name="product_id" value="{{ $product->id }}"> 
+                                                                        <a href="{{ route('wishlist.store') }}"onclick="event.preventDefault();
+                                                                        this.closest('form').submit();"><i class="far fa-heart" aria-hidden="true"></i></a>
+                                                                    </form>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -266,7 +280,14 @@
                                                     <div class="action_links">
                                                         <ul>
                                                             <li class="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box{{ $product->id }}" title="quick view"> <i class="fa fa-eye" aria-hidden="true"></i></a></li>
-                                                            <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i class="far fa-heart" aria-hidden="true"></i></a></li>
+                                                            <li class="wishlist">
+                                                                <form action="{{ route('wishlist.store') }}" method="POST">
+                                                                    @csrf 
+                                                                        <input type="hidden" name="product_id" value="{{ $product->id }}"> 
+                                                                        <a href="{{ route('wishlist.store') }}"onclick="event.preventDefault();
+                                                                        this.closest('form').submit();"><i class="far fa-heart" aria-hidden="true"></i></a>
+                                                                    </form>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -333,7 +354,14 @@
                                                     <div class="action_links">
                                                         <ul>
                                                             <li class="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box{{ $product->id }}" title="quick view"> <i class="fa fa-eye" aria-hidden="true"></i></a></li>
-                                                            <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i class="far fa-heart" aria-hidden="true"></i></a></li>
+                                                            <li class="wishlist">
+                                                                <form action="{{ route('wishlist.store') }}" method="POST">
+                                                                    @csrf 
+                                                                        <input type="hidden" name="product_id" value="{{ $product->id }}"> 
+                                                                    <a href="{{ route('wishlist.store') }}"onclick="event.preventDefault();
+                                                                    this.closest('form').submit();"><i class="far fa-heart" aria-hidden="true"></i></a>
+                                                                </form>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -457,7 +485,14 @@
                                         <div class="action_links">
                                             <ul>
                                                 <li class="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box{{ $product->id }}" title="quick view"> <i class="fa fa-eye" aria-hidden="true"></i></a></li>
-                                                <li class="wishlist"><a href="wishlist.html" title="Add to Wishlist"><i class="far fa-heart" aria-hidden="true"></i></a></li>
+                                                <li class="wishlist">
+                                                    <form action="{{ route('wishlist.store') }}" method="POST">
+                                                    @csrf 
+                                                        <input type="hidden" name="product_id" value="{{ $product->id }}"> 
+                                                        <a href="{{ route('wishlist.store') }}"onclick="event.preventDefault();
+                                                        this.closest('form').submit();"><i class="far fa-heart" aria-hidden="true"></i></a>
+                                                    </form>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>

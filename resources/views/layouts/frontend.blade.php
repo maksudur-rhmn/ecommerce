@@ -143,9 +143,9 @@
                         <div class="col-lg-6 col-md-12">
                             <div class="header_account_area">
                                 <ul>
-                                    <li><a href="wishlist.html">My Wishlist</a></li>
-                                    <li><a href="checkout.html">check out</a></li>
-                                    <li><a href="login.html">Sign in</a></li>
+                                    <li><a href="{{ route('wishlist.index') }}">My Wishlist</a></li>
+                                    <li><a href="{{ route('checkout.index') }}">check out</a></li>
+                                    <li><a href="{{ url('/login') }}">Sign in</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -171,7 +171,6 @@
                                 <form action="#">
                                     <input placeholder="Search" type="text">
                                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-
                                 </form>
                             </div>
                         </div>
@@ -179,7 +178,7 @@
                             <div class="cart_wishlist_area">
                                 <div class="header_wishlist">
                                     <a href="wishlist.html"><i class="far fa-heart" aria-hidden="true"></i>
-                                        <span class="item_count">3</span>
+                                        <span class="item_count">{{ wishlistCount() }}</span>
                                     </a>
                                 </div>
                                 <div class="mini_cart_wrapper">
