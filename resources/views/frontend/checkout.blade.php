@@ -135,6 +135,10 @@
                                         <option value="bkash">Bkash</option>
                                     </select>
                                </div>
+                               <div class="py-3 text-center">
+                                   <img src="{{ asset('uploads/bkash.png') }}" alt="">
+                                   <h2>+88017111234567 (Personal)</h2>
+                               </div>
                                <div class="py-3">
                                 <label>Trx ID (Only Applicable if you have paid via Bkash, Nagad, or Rocket)<span></span></label>
                                    <input type="text" placeholder="Please provide trx id if you have paid by bkash">

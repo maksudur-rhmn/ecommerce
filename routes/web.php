@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CouponController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FrontendController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\SubCategoryController;
-use App\Http\Controllers\CouponController;
 use App\Http\Controllers\WishlistController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,12 @@ Route::get('/show/all/products', [FrontendController::class, 'productsAll'])->na
 Route::get('/l2h/{name}/products', [FrontendController::class, 'lowToHigh'])->name('frontend.lowToHigh');
 Route::get('/h2l/{name}/products', [FrontendController::class, 'HighToLow'])->name('frontend.highToLow');
 Route::get('/product/details/{slug}', [FrontendController::class, 'productDetails'])->name('frontend.productDetails');
+Route::get('/blogs/{id}/details', [FrontendController::class, 'blogDetails'])->name('frontend.blogDetails');
+Route::get('/blogs', [FrontendController::class, 'blogs'])->name('frontend.blogs');
+Route::get('/contact', [FrontendController::class, 'contact'])->name('frontend.contact');
+Route::post('/contact/post', [FrontendController::class, 'contactPost'])->name('frontend.contactpost');
+Route::get('/about', [FrontendController::class, 'about'])->name('frontend.about');
+Route::get('/faq', [FrontendController::class, 'faq'])->name('frontend.faq');
 
 // Cart Controller 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
@@ -70,3 +77,7 @@ Route::resource('coupon', CouponController::class);
 Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout.index'); 
 Route::post('checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 Route::post('/order', [CheckoutController::class, 'order'])->name('order.store');
+
+// Blog Controller 
+Route::get('/blog/{id}/delete', [BlogController::class, 'delete'])->name('blog.delete');
+Route::resource('blog', BlogController::class);

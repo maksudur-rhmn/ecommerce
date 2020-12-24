@@ -136,17 +136,8 @@
                                                             @csrf
                                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                             <input type="hidden" name="cart_amount" value="1">
-                                                        <button style="
-                                                            line-height: 45px;
-                                                            height: 45px;
-                                                            display: inline-block;
-                                                            font-size: 13px;
-                                                            font-weight: 400;
-                                                            text-transform: uppercase;
-                                                            padding: 0 30px;
-                                                            width: 100%;
-                                                            background: #999999;
-                                                            color: #fff;" type="submit" title="Add to cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</button>
+                                                            <a href="{{ route('cart.store') }}" onclick="event.preventDefault();
+                                                            this.closest('form').submit();">Add To Cart</a>
                                                     </div>
                                                 </form>
                                                 </figcaption>
@@ -242,17 +233,8 @@
                                                             @csrf
                                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                             <input type="hidden" name="cart_amount" value="1">
-                                                            <button style="
-                                                            line-height: 45px;
-                                                            height: 45px;
-                                                            display: inline-block;
-                                                            font-size: 13px;
-                                                            font-weight: 400;
-                                                            text-transform: uppercase;
-                                                            padding: 0 30px;
-                                                            width: 100%;
-                                                            background: #999999;
-                                                            color: #fff;" type="submit"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</button>
+                                                            <a href="{{ route('cart.store') }}" onclick="event.preventDefault();
+                                                            this.closest('form').submit();">Add To Cart</a>
                                                             </form>
                                                     </div>
                                                 </figcaption>
@@ -315,17 +297,8 @@
                                                         @csrf
                                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                         <input type="hidden" name="cart_amount" value="1">
-                                                        <button style="
-                                                        line-height: 45px;
-                                                        height: 45px;
-                                                        display: inline-block;
-                                                        font-size: 13px;
-                                                        font-weight: 400;
-                                                        text-transform: uppercase;
-                                                        padding: 0 30px;
-                                                        width: 100%;
-                                                        background: #999999;
-                                                        color: #fff;" type="submit"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</button>
+                                                        <a href="{{ route('cart.store') }}" onclick="event.preventDefault();
+                                                          this.closest('form').submit();">Add To Cart</a>
                                                         </form>
                                                     </div>
                                                 </figcaption>
@@ -389,17 +362,8 @@
                                                             @csrf
                                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                             <input type="hidden" name="cart_amount" value="1">
-                                                            <button style="
-                                                            line-height: 45px;
-                                                            height: 45px;
-                                                            display: inline-block;
-                                                            font-size: 13px;
-                                                            font-weight: 400;
-                                                            text-transform: uppercase;
-                                                            padding: 0 30px;
-                                                            width: 100%;
-                                                            background: #999999;
-                                                            color: #fff;" type="submit"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</button>
+                                                            <a href="{{ route('cart.store') }}" onclick="event.preventDefault();
+                                                                  this.closest('form').submit();">Add To Cart</a>
                                                         </form>
                                                     </div>
                                                 </figcaption>
@@ -520,17 +484,8 @@
                                                 @csrf
                                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                 <input type="hidden" name="cart_amount" value="1">
-                                                <button style="
-                                                line-height: 45px;
-                                                height: 45px;
-                                                display: inline-block;
-                                                font-size: 13px;
-                                                font-weight: 400;
-                                                text-transform: uppercase;
-                                                padding: 0 30px;
-                                                width: 100%;
-                                                background: #999999;
-                                                color: #fff;" type="submit"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</button>
+                                                <a href="{{ route('cart.store') }}" onclick="event.preventDefault();
+                                                          this.closest('form').submit();">Add To Cart</a>
                                             </form>
                                         </div>
                                     </figcaption>
@@ -558,54 +513,22 @@
                 <div class="blog_container">
                     <div class="row">
                         <div class="blog_carousel blog_column3 owl-carousel">
+                            @forelse ($blogs as $item)
                             <div class="col-lg-4">
                                 <div class="single_blog">
                                     <div class="blog_thumb">
-                                        <a href="blog-details.html"><img src="{{ asset('frontend_assets/img/blog/blog1.jpg') }}" alt=""></a>
+                                        <a href="{{ route('frontend.blogDetails', $item->id) }}"><img src="{{ asset('uploads/blogs') }}/{{ $item->image }}" alt="not found" width="370" height="200"></a>
                                     </div>
                                     <div class="blog_content">
-                                        <h4><a href="blog-details.html">Rain On A Winter Day</a></h4>
-                                        <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ...</p>
-                                        <a href="blog.html">Read More</a>
+                                        <h4><a href="{{ route('frontend.blogDetails', $item->id) }}">{{ ucfirst($item->title) }}</a></h4>
+                                        <p>{{ ucfirst($item->sub_title) }}</p>
+                                        <a href="{{ route('frontend.blogDetails', $item->id) }}">Read More</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
-                                <div class="single_blog">
-                                    <div class="blog_thumb">
-                                        <a href="blog-details.html"><img src="{{ asset('frontend_assets/img/blog/blog2.jpg') }}" alt=""></a>
-                                    </div>
-                                    <div class="blog_content">
-                                        <h4><a href="blog-details.html">Garden of Whimsy</a></h4>
-                                        <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ...</p>
-                                        <a href="blog.html">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="single_blog">
-                                    <div class="blog_thumb">
-                                        <a href="blog-details.html"><img src="{{ asset('frontend_assets/img/blog/blog3.jpg') }}" alt=""></a>
-                                    </div>
-                                    <div class="blog_content">
-                                        <h4><a href="blog-details.html">Summer And What To Wear</a></h4>
-                                        <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ...</p>
-                                        <a href="blog.html">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="single_blog">
-                                    <div class="blog_thumb">
-                                        <a href="blog-details.html"><img src="{{ asset('frontend_assets/img/blog/blog1.jpg') }}" alt=""></a>
-                                    </div>
-                                    <div class="blog_content">
-                                        <h4><a href="blog-details.html">Rain On A Winter Day</a></h4>
-                                        <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been ...</p>
-                                        <a href="blog.html">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
+                            @empty
+                                <p>No data available</p>
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -721,10 +644,12 @@
                                          </select>
                                      </div>
                                      <div class="modal_add_to_cart">
-                                         <form action="#">
-                                             <input min="1" max="100" step="2" value="1" type="number">
-                                             <button type="submit">add to cart</button>
-                                         </form>
+                                        <form method="POST" action="{{ route('cart.store') }}">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <input min="1" max="100" value="1" type="number" name="cart_amount">
+                                            <button type="submit">add to cart</button>
+                                        </form>
                                      </div>
                                  </div>
                                  <div class="modal_social">

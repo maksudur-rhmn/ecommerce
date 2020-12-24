@@ -78,7 +78,7 @@
                                             <a href="{{ route('frontend.products', $category->name) }}">{{ $category->name }}</a>
                                             <ul class="sub-menu">
                                                 @foreach ($category->hasSubCategory as $subcategory)    
-                                                  <li><a href="">{{ $subcategory->name }}</a></li>
+                                                  <li><a href="{{ route('frontend.products', $subcategory->name) }}">{{ $subcategory->name }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </li>
@@ -86,34 +86,20 @@
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="#">blog</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="blog.html">blog</a></li>
-                                        <li><a href="blog-details.html">blog details</a></li>
-                                        <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
-                                        <li><a href="blog-sidebar.html">blog sidebar</a></li>
-                                    </ul>
+                                    <a href="{{ route('frontend.blogs') }}">blog</a>
 
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="#">pages </a>
-                                    <ul class="sub-menu">
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="services.html">services</a></li>
-                                        <li><a href="faq.html">Frequently Questions</a></li>
-                                        <li><a href="contact.html">contact</a></li>
-                                        <li><a href="login.html">login</a></li>
-                                        <li><a href="404.html">Error 404</a></li>
-                                    </ul>
+                                    <a href="{{ route('frontend.faq') }}">FAQ </a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="my-account.html">my account</a>
+                                    <a href="{{ url('/dashboard') }}">my account</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="about.html">about Us</a>
+                                    <a href="{{ route('frontend.about') }}">about Us</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="contact.html"> Contact Us</a>
+                                    <a href="{{ route('frontend.contact') }}"> Contact Us</a>
                                 </li>
                             </ul>
                         </div>
@@ -145,7 +131,21 @@
                                 <ul>
                                     <li><a href="{{ route('wishlist.index') }}">My Wishlist</a></li>
                                     <li><a href="{{ route('checkout.index') }}">check out</a></li>
+                                    @auth 
+                                    <li>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                        <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                                    SIGN OUT
+                                        </a>
+                                        </form>
+                                    </li>
+                                    @endauth
+                                    @guest
                                     <li><a href="{{ url('/login') }}">Sign in</a></li>
+                                    @endguest
                                 </ul>
                             </div>
                         </div>
@@ -208,7 +208,7 @@
                                                   <li><a href="{{ route('frontend.products', $category->name) }}">{{ ucfirst($category->name) }}</a>
                                                         <ul>
                                                             @foreach ($category->hasSubCategory as $subcategory)
-                                                            <li><a href="shop-fullwidth.html">{{ ucfirst($subcategory->name) }}</a></li>
+                                                            <li><a href="{{ route('frontend.products', $subcategory->name) }}">{{ ucfirst($subcategory->name) }}</a></li>
                                                             @endforeach
                                                         </ul>
                                                  </li>
@@ -223,24 +223,11 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li><a href="blog.html">blog<i class="fa fa-angle-down"></i></a>
-                                            <ul class="sub_menu pages">
-                                                <li><a href="blog-details.html">blog details</a></li>
-                                                <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
-                                                <li><a href="blog-sidebar.html">blog sidebar</a></li>
-                                            </ul>
+                                        <li><a href="{{ route('frontend.blogs') }}">blogs</a>
                                         </li>
-                                        <li><a href="contact.html"> Contact Us</a></li>
-                                        <li><a href="about.html"> About us</a></li>
-                                        <li><a href="#">pages <i class="fa fa-angle-down"></i></a>
-                                            <ul class="sub_menu pages">
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="services.html">services</a></li>
-                                                <li><a href="faq.html">Frequently Questions</a></li>
-                                                <li><a href="contact.html">contact</a></li>
-                                                <li><a href="login.html">login</a></li>
-                                                <li><a href="404.html">Error 404</a></li>
-                                            </ul>
+                                        <li><a href="{{ route('frontend.contact') }}"> Contact Us</a></li>
+                                        <li><a href="{{ route('frontend.about') }}"> About us</a></li>
+                                        <li><a href="{{ route('frontend.faq') }}">FAQ</a>
                                         </li>
                                     </ul>
                                 </nav>

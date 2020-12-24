@@ -159,17 +159,7 @@
                              <button data-role="grid_3" type="button" class="active btn-grid-3" data-toggle="tooltip" title="3"></button>
                              <button data-role="grid_list" type="button"  class="btn-list" data-toggle="tooltip" title="List"></button>
                          </div>
-                         {{-- <div class=" niceselect_option">
-                                 <div class="select_option">
-                                    <select name="orderby" onchange="window.location.href=this.value">
-                                        <option value="">Filter products</option>
-                                        <option value="https://google.com">Sort by price: low to high</option>
-                                        <option value="5">Sort by price: high to low</option>
-                                        <option value="6">Product Name: Z</option>
-                                    </select>
-
-                                 </div>
-                         </div> --}}
+                     
                          <div class="page_amount">
                              <p>Showing {{ $products->count() }} results</p>
                          </div>
@@ -214,7 +204,13 @@
                                            @endif
                                         </div>
                                         <div class="add_to_cart">
-                                            <a href="cart.html" title="Add to cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart</a>
+                                            <form method="POST" action="{{ route('cart.store') }}">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                <input type="hidden" name="cart_amount" value="1">
+                                                <a title="Add to cart" href="{{ route('cart.store') }}" onclick="event.preventDefault();
+                                                this.closest('form').submit();"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add To Cart</a>
+                                                </form>
                                         </div>
                                     </figcaption>
                                 </figure>
@@ -339,10 +335,12 @@
                                      </select>
                                  </div>
                                  <div class="modal_add_to_cart">
-                                     <form action="#">
-                                         <input min="1" max="100" step="2" value="1" type="number">
-                                         <button type="submit">add to cart</button>
-                                     </form>
+                                        <form method="POST" action="{{ route('cart.store') }}">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <input min="1" max="100" value="1" type="number" name="cart_amount">
+                                            <button type="submit">add to cart</button>
+                                        </form>
                                  </div>
                              </div>
                              <div class="modal_social">

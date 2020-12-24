@@ -304,7 +304,7 @@
                             </a>
                         </li>
 
-                        <li>
+                        <li class="">
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="uil-shop"></i>
                                 <span>Products</span>
@@ -312,6 +312,17 @@
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="{{ route('products.index') }}">Product list</a></li>
                                 <li><a href="{{ route('products.create') }}">Add Products</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="">
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="uil-500px"></i>
+                                <span>Blogs</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{ route('blog.index') }}">Blog list</a></li>
+                                <li><a href="{{ route('blog.create') }}">Add Blogs</a></li>
                             </ul>
                         </li>
 
