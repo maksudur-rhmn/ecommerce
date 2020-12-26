@@ -31,3 +31,13 @@ function cartTotal()
     }
     return $sub_total;
 }
+
+function about()
+{
+  return App\Models\About::first();
+}
+
+function footer()
+{
+  return App\Models\Footer::first();
+}

@@ -14,6 +14,7 @@ class CategoryController extends Controller
     {
         $this->middleware('auth:sanctum');
         $this->middleware('verified');
+        $this->middleware('checkRole');
     }
     /**
      * Display a listing of the resource.

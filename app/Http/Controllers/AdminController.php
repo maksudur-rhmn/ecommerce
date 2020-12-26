@@ -10,6 +10,7 @@ class AdminController extends Controller
     {
         $this->middleware('auth:sanctum');
         $this->middleware('verified');
+        $this->middleware('checkRole');
     }
 
     public function index()

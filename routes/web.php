@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\BlogController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\FooterController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\SubCategoryController;
@@ -81,3 +83,16 @@ Route::post('/order', [CheckoutController::class, 'order'])->name('order.store')
 // Blog Controller 
 Route::get('/blog/{id}/delete', [BlogController::class, 'delete'])->name('blog.delete');
 Route::resource('blog', BlogController::class);
+
+// About Controller 
+Route::get('/abouts', [AboutController::class, 'index'])->name('abouts.index');
+Route::post('/abouts/store', [AboutController::class, 'store'])->name('abouts.store');
+
+// Footer Controller 
+Route::get('/footer', [FooterController::class, 'index'])->name('footer.index');
+Route::post('/footer/store', [FooterController::class, 'store'])->name('footer.store');
+
+// Customer Controller 
+Route::get('/customer', function(){
+  echo "Hello Customer";
+});

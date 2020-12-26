@@ -15,6 +15,7 @@ class BlogController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('verified');
+        $this->middleware('checkRole');
     }
     /**
      * Display a listing of the resource.

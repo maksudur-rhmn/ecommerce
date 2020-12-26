@@ -339,6 +339,19 @@
                                 <span>Coupons</span>
                             </a>
                         </li>
+                        <li class="@yield('about_menu_active')">
+                            <a href="{{ route('abouts.index') }}">
+                                <i class="uil-compact-disc"></i>
+                                <span>About</span>
+                            </a>
+                        </li>
+
+                        <li class="@yield('footer_menu_active')">
+                            <a href="{{ route('footer.index') }}">
+                                <i class="uil-align-center-v"></i>
+                                <span>Footer</span>
+                            </a>
+                        </li>
 
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">

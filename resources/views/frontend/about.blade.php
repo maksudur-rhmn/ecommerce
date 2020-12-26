@@ -25,14 +25,14 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                 	<div class="about_content">
-						<h1>About Our Classico Store</h1>
-						<h3>We believe that every project existing in digital world is a result of an idea and every idea has a cause.</h3>
-						<p>For this reason, our each design serves an idea. Our strength in design is reflected by our name, our care for details. Our specialist won't be afraid to go extra miles just to approach near perfection. We don't require everything to be perfect, but we need them to be perfectly cared for. That's a reason why we are willing to give contributions at best. Not a single detail is missed out under Billey's professional eyes.The amount of dedication and effort equals to the level of passion and by.</p>
+						<h1>{{ $about->title }}</h1>
+						<h3>{{ $about->sub_title }}</h3>
+						<p>{{ $about->description }}</p>
 					</div>
                 </div>  
                 <div class="col-lg-6">
                 	<div class="about_thumb">
-						<img src="{{ asset('frontend_assets/img/about/about1.jpg') }}" alt="">
+						<img src="{{ asset('uploads/about') }}/{{ $about->image }}" alt="">
 					</div>
                 </div>
             </div>  
@@ -50,8 +50,7 @@
                             <img src="{{ asset('frontend_assets/img/about/About_icon1.png') }}" alt="">
                         </div>
                         <div class="chose_content">
-                            <h3>Creative Design</h3>
-                            <p>Erat metus sodales eget dolor consectetuer, porta ut purus at et alias, nulla ornare velit amet</p>
+                            <h3>Fast Delivery</h3>
 
                         </div>
                     </div>
@@ -63,8 +62,6 @@
                         </div>
                         <div class="chose_content">
                             <h3>100% Money Back Guarantee</h3>
-                            <p>Erat metus sodales eget dolor consectetuer, porta ut purus at et alias, nulla ornare velit amet</p>
-
                         </div>
                     </div>
                 </div>
@@ -75,8 +72,6 @@
                         </div>
                         <div class="chose_content">
                             <h3>Online Support 24/7</h3>
-                            <p>Erat metus sodales eget dolor consectetuer, porta ut purus at et alias, nulla ornare velit amet</p>
-
                         </div>
                     </div>
                 </div>
@@ -95,11 +90,11 @@
                         <article class="single_gallery_section">
                             <figure>
                                 <div class="gallery_thumb">
-                                    <img src="{{ asset('frontend_assets/img/about/about2.jpg') }}" alt="">
+                                    <img src="{{ asset('uploads/about') }}/{{ $about->bottom_title_image_one }}" alt="">
                                 </div>
                                 <figcaption class="about_gallery_content">
-                                   <h3>What do we do?</h3>
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto</p>
+                                   <h3>{{ $about->bottom_title_one }}</h3>
+                                   <p>{{ $about->bottom_title_description_one }}</p>
                                 </figcaption>
                             </figure>
                         </article>
@@ -108,11 +103,11 @@
                         <article class="single_gallery_section">
                             <figure>
                                 <div class="gallery_thumb">
-                                    <img src="{{ asset('frontend_assets/img/about/about3.jpg') }}" alt="">
+                                    <img src="{{ asset('uploads/about') }}/{{ $about->bottom_title_image_two }}" alt="">
                                 </div>
                                 <figcaption class="about_gallery_content">
-                                   <h3>Our Mission</h3>
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto</p>
+                                   <h3>{{ $about->bottom_title_two }}</h3>
+                                   <p>{{ $about->bottom_title_description_two }}</p>
                                 </figcaption>
                             </figure>
                         </article>
@@ -121,11 +116,11 @@
                         <article class="single_gallery_section col__3">
                             <figure>
                                 <div class="gallery_thumb">
-                                    <img src="{{ asset('frontend_assets/img/about/about4.jpg') }}" alt="">
+                                    <img src="{{ asset('uploads/about') }}/{{ $about->bottom_title_image_three }}" alt="">
                                 </div>
                                 <figcaption class="about_gallery_content">
-                                   <h3>History Of Us</h3>
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto</p>
+                                   <h3>{{ $about->bottom_title_three }}</h3>
+                                   <p>{{ $about->bottom_title_description_three }}</p>
                                 </figcaption>
                             </figure>
                         </article>

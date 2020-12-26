@@ -104,7 +104,7 @@
                             </ul>
                         </div>
                         <div class="offcanvas_footer">
-                            <span><a href="#"><i class="fa fa-envelope-o"></i> info@yourdomain.com</a></span>
+                            <span><a href="mailto:{{ footer()->email }}"><i class="fa fa-envelope-o"></i>{{ footer()->email }}</a></span>
                         </div>
                     </div>
                 </div>
@@ -121,8 +121,8 @@
                         <div class="col-lg-6 col-md-12">
                             <div class="header_contact_us">
                                 <ul>
-                                    <li><span><i class="fa fa-phone"></i> Call us now: </span> <a href="tel:(+800)123456789"><i class="icon-call-in"></i> (+800)123456789</a></li>
-                                    <li><span><i class="fa fa-envelope-o"></i>Email: </span> <a href="mailto:http://1.envato.market/9LbxW"><i class="icon-envelope"></i> has@posthemes.com</a></li>
+                                    <li><span><i class="fa fa-phone"></i> Call us now: </span> <a href="tel:{{ footer()->phone }}"><i class="icon-call-in"></i>{{ footer()->phone }}</a></li>
+                                    <li><span><i class="fa fa-envelope-o"></i>Email: </span> <a href="mailto:{{ footer()->email }}"><i class="icon-envelope"></i>{{ footer()->email }}</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -142,6 +142,7 @@
                                         </a>
                                         </form>
                                     </li>
+                                    <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
                                     @endauth
                                     @guest
                                     <li><a href="{{ url('/login') }}">Sign in</a></li>
@@ -315,7 +316,7 @@
                                 <a href="{{ route('frontend.index') }}"><img src="assets/img/logo/logo.png" alt=""></a>
                             </div>
                             <div class="footer_desc">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elitse do eiusmod tempor incididunt ut labore et dolore.</p>
+                                <p>{{ about()->bottom_title_description_one }}</p>
                             </div>
                         </div>
                     </div>
@@ -323,15 +324,13 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="footer_list">
                             <div class="footer_list_title">
-                                <h3>THEME FEATURES</h3>
+                                <h3>Categories</h3>
                             </div>
                             <div class="footer_list_menu">
                                 <ul>
-                                    <li><a href="#">theme features</a></li>
-                                    <li><a href="#">Our Other Projects</a></li>
-                                    <li><a href="#">Typography</a></li>
-                                    <li><a href="#">One Click To Join Us</a></li>
-                                    <li><a href="#">Follow Us On Twitter</a></li>
+                                    @foreach (categories()->take(5) as $item)
+                                    <li><a href="{{ route('frontend.products', $item->name) }}">{{ $item->name }}</a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -363,7 +362,7 @@
                                         <span>3</span>
                                     </div>
                                     <div class="footer_contact_text">
-                                        <p>Pay by creadit card.</p>
+                                        <p>Pay by Bkash.</p>
                                     </div>
                                 </div>
                                 <div class="footer_contact_list">
@@ -388,8 +387,7 @@
                                         <span><i class="fa fa-phone"></i></span>
                                     </div>
                                     <div class="footer_contact_text">
-                                        <p>Call Us <a href="tel:+001666951">+001 666 951</a></p>
-                                        <p>Fax <a href="tel:+001678987"> +001 678 987</a></p>
+                                        <p>Call Us <a href="tel:{{ footer()->phone }}">{{ footer()->phone }}</a></p>
                                     </div>
                                 </div>
                                 <div class="footer_contact_list">
@@ -397,8 +395,7 @@
                                         <span><i class="fa fa-mobile"></i></span>
                                     </div>
                                     <div class="footer_contact_text">
-                                        <p><a href="tel:+771231234">+77 123 1234</a></p>
-                                        <p><a href="tel:+42989876"> +42 98 9876</a></p>
+                                        <p><a>{{ footer()->address }}</a></p>
                                     </div>
                                 </div>
                                 <div class="footer_contact_list">
@@ -406,8 +403,7 @@
                                         <span><i class="fa fa-envelope"></i></span>
                                     </div>
                                     <div class="footer_contact_text">
-                                        <p><a href="mailto:http://1.envato.market/9LbxW">has@posthemes.com</a></p>
-                                        <p><a href="mailto:http://1.envato.market/9LbxW">has@posthemes.com</a></p>
+                                        <p><a href="mailto:{{ footer()->email }}">{{ footer()->email }}</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -422,11 +418,7 @@
                     <div class="col-lg-5 col-md-4">
                         <div class="footer_social">
                             <ul>
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                                <li><a href="{{ footer()->facebook }}"><i class="fab fa-facebook-f"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -452,81 +444,12 @@
                 </div>
             </div>
         </div>
-        {{-- <div class="footer_middle">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="footer_list">
-                            <div class="footer_list_title">
-                                <h3>Categories</h3>
-                            </div>
-                            <div class="footer_list_menu">
-                                <ul>
-                                    <li><a href="#">T-Shirts & Top</a></li>
-                                    <li><a href="#">Dress & Skirt</a></li>
-                                    <li><a href="#">Denim</a></li>
-                                    <li><a href="#">Menwear</a></li>
-                                    <li><a href="#">Accessories</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="footer_list">
-                            <div class="footer_list_title">
-                                <h3>Information</h3>
-                            </div>
-                            <div class="footer_list_menu">
-                                <ul>
-                                    <li><a href="#">Specials</a></li>
-                                    <li><a href="#">New products</a></li>
-                                    <li><a href="#">Best sellers</a></li>
-                                    <li><a href="#">Our stores</a></li>
-                                    <li><a href="contact.html">Contact us</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="footer_list">
-                            <div class="footer_list_title">
-                                <h3>My account</h3>
-                            </div>
-                            <div class="footer_list_menu">
-                                <ul>
-                                    <li><a href="#">My orders</a></li>
-                                    <li><a href="#">My credit slips</a></li>
-                                    <li><a href="#">My addresses</a></li>
-                                    <li><a href="#">My personal info</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6">
-                        <div class="footer_list">
-                            <div class="footer_list_title">
-                                <h3>Extra</h3>
-                            </div>
-                            <div class="footer_list_menu">
-                                <ul>
-                                    <li><a href="#"> Specials </a></li>
-                                    <li><a href="#"> New products </a></li>
-                                    <li><a href="#">Best sellers</a></li>
-                                    <li><a href="#">Our stores</a></li>
-                                    <li><a href="contact.html"> Site Map </a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
         <div class="footer_bottom">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-7">
                         <div class="copyright_area">
-                            <p>Copyright © 2020 <a href="{{ route('frontend.index') }}">Classico</a>. <a href="https://hasthemes.com/" target="_blank">All rights reserved.</a></p>
+                            <p>Copyright © 2020 <a href="{{ route('frontend.index') }}">Darcheni</a>. <a href="https://dgtaltech.com/" target="_blank">All rights reserved. Developed by Digital Tech</a></p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-5">

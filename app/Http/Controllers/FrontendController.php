@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Faq;
 use App\Models\Blog;
+use App\Models\About;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\SubCategory;
@@ -93,14 +94,16 @@ class FrontendController extends Controller
      $phone = $request->phone;
      $message = $request->message;
 
-     Mail::to('info@darcheni.com')->send(new VisitorQueries($name, $email, $phone, $message));
+     Mail::to('darcheniecommerce@gmail.com')->send(new VisitorQueries($name, $email, $phone, $message));
 
      return back()->withSuccess('Message received successfully.We will get back to you as soon as possible');
     }
 
     public function about()
     {
-      return view('frontend.about');
+      return view('frontend.about',[
+        'about' => About::first(),
+      ]);
     }
 
     public function faq()
