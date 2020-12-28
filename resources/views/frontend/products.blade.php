@@ -28,122 +28,57 @@
                      <aside class="sidebar_widget">
                          <div class="widget_inner">
                              <div class="widget_list widget_categories">
-                                 <h3>Women</h3>
+                                 <h3>CATEGORIES</h3>
                                  <ul>
-                                     <li class="widget_sub_categories sub_categories1"><a href="javascript:void(0)">Shoes</a>
-                                         <ul class="widget_dropdown_categories dropdown_categories1">
-                                             <li><a href="#">Document</a></li>
-                                             <li><a href="#">Dropcap</a></li>
-                                             <li><a href="#">Dummy Image</a></li>
-                                             <li><a href="#">Dummy Text</a></li>
-                                             <li><a href="#">Fancy Text</a></li>
-                                         </ul>
-                                     </li>
-                                     <li class="widget_sub_categories sub_categories2"><a href="javascript:void(0)">Bags</a>
-                                         <ul class="widget_dropdown_categories dropdown_categories2">
-                                             <li><a href="#">Flickr</a></li>
-                                             <li><a href="#">Flip Box</a></li>
-                                             <li><a href="#">Cocktail</a></li>
-                                             <li><a href="#">Frame</a></li>
-                                             <li><a href="#">Flickrq</a></li>
-                                         </ul>
-                                     </li>
-                                     <li class="widget_sub_categories sub_categories3"><a href="javascript:void(0)">Clothing</a>
-                                         <ul class="widget_dropdown_categories dropdown_categories3">
-                                             <li><a href="#">Platform Beds</a></li>
-                                             <li><a href="#">Storage Beds</a></li>
-                                             <li><a href="#">Regular Beds</a></li>
-                                             <li><a href="#">Sleigh Beds</a></li>
-                                             <li><a href="#">Laundry</a></li>
-                                         </ul>
-                                     </li>
+                                     @php
+                                         $i = 1;
+                                     @endphp
+                                    @foreach ($products->unique('category_id') as $item)
+                                    <li class="widget_sub_categories sub_categories{{ $i }}">
+                                        <a href="javascript:void(0)">{{ ucfirst($item->belongTo->hasCategory->name) }}</a>
+                                        <ul class="widget_dropdown_categories dropdown_categories{{ $i }}">
+                                           @foreach ($item->belongTo->hasCategory->hasSubCategory as $sub)
+                                           <li><a href="{{ route('frontend.products', $sub->name) }}">{{ $sub->name }}</a></li>
+                                           @endforeach
+                                        </ul>
+                                    </li>
+                                    @php
+                                        $i++;
+                                    @endphp
+                                    @endforeach
                                  </ul>
                              </div>
                              <div class="widget_list widget_filter">
                                  <h3>Filter by price</h3>
-                                 <form action="#"> 
+                                 <form action="{{ url('/search') }}"> 
                                      <div id="slider-range"></div>   
                                      <button type="submit">Filter</button>
                                      <input type="text" name="text" id="amount" />   
                                  </form> 
                              </div>
                              <div class="widget_list widget_color">
-                                 <h3>Select By Color</h3>
+                                 <h3>Select By Categories</h3>
                                  <ul>
-                                     <li>
-                                         <a href="#">Black  <span>(6)</span></a> 
-                                     </li>
-                                     <li>
-                                         <a href="#">White  <span>(4)</span></a> 
-                                     </li>
-                                     <li>
-                                         <a href="#"> Blue <span>(8)</span></a> 
-                                     </li>
-                                     <li>
-                                         <a href="#"> Green <span>(6)</span></a> 
-                                     </li>
+                                   
+                                    @foreach (categories() as $item)
+                                    
+                                        <li><a href="{{ route('frontend.products', $item->name) }}">{{ ucfirst($item->name) }}</a></li>
 
+                                    @endforeach
+                                   
                                  </ul>
                              </div>
                              <div class="widget_list widget_color">
-                                 <h3>Select By SIze</h3>
+                                 <h3>Select By Sub Categories</h3>
                                  <ul>
-                                     <li>
-                                         <a href="#">S  <span>(6)</span></a> 
-                                     </li>
-                                     <li>
-                                         <a href="#"> M <span>(8)</span></a> 
-                                     </li>
-                                     <li>
-                                         <a href="#">L <span>(10)</span></a> 
-                                     </li>
-                                     <li>
-                                         <a href="#"> XL <span>(6)</span></a> 
-                                     </li>
+                                     
+                                    @foreach (categories() as $item)
+                                        @foreach($item->hasSubCategory as $subcategory)
+                                          <li><a href="{{ route('frontend.products', $subcategory->name) }}">{{ ucfirst($subcategory->name) }}</a></li>
+                                        @endforeach
+                                    @endforeach
 
                                  </ul>
-                             </div>
-                              <div class="widget_list widget_brand">
-                                 <h3>Brand</h3>
-                                 <ul>
-                                     <li>
-                                         <a href="#">Studio Design <span>(8)</span></a> 
-                                     </li>
-                                     <li>
-                                         <a href="#"> Graphic Corner<span>(5)</span></a> 
-                                     </li>
-                                 </ul>
-                             </div>
-                             <div class="widget_list widget_manu">
-                                 <h3>Manufacturer</h3>
-                                 <ul>
-                                     <li>
-                                         <a href="#">Cotton <span>(6)</span></a> 
-                                     </li>
-                                     <li>
-                                         <a href="#">Elastane <span>(10)</span></a> 
-                                     </li>
-                                     <li>
-                                         <a href="#">Polyester <span>(4)</span></a> 
-                                     </li>
-                                     <li>
-                                         <a href="#">Wool <span>(10)</span></a> 
-                                     </li>
-                                     <li>
-                                         <a href="#">Squarred <span>(3)</span></a> 
-                                     </li>
-
-                                 </ul>
-                             </div>
-                             <div class="widget_list tags_widget">
-                                 <h3>Product tags</h3>
-                                 <div class="tag_cloud">
-                                     <a href="#">Men</a>
-                                     <a href="#">Women</a>
-                                     <a href="#">Watches</a>
-                                     <a href="#">Bags</a>
-                                     <a href="#">Dress</a>
-                                 </div>
                              </div>
                          </div>
                      </aside>

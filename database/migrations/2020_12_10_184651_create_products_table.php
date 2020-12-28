@@ -18,8 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->longText('short_desc');
             $table->longText('long_desc');
-            $table->string('price');
-            $table->string('discount_price')->nullable();
+            $table->integer('price');
+            $table->integer('discount_price')->nullable();
             $table->enum('featured', ['yes', 'no']);
             $table->string('thumbnail_image');
             $table->string('quantity');

@@ -96,3 +96,6 @@ Route::post('/footer/store', [FooterController::class, 'store'])->name('footer.s
 Route::get('/customer', function(){
   echo "Hello Customer";
 });
+
+// Search Controller 
+Route::get('/search', [FrontendController::class, 'search']);

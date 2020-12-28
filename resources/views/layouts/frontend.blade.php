@@ -169,8 +169,8 @@
                         </div>
                         <div class="col-lg-4 col_search">
                             <div class="header_search_box">
-                                <form action="#">
-                                    <input placeholder="Search" type="text">
+                                <form action="{{ url('/search') }}">
+                                    <input placeholder="Search" type="text" name="name">
                                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                                 </form>
                             </div>
