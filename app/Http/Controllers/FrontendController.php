@@ -48,9 +48,7 @@ class FrontendController extends Controller
 
    public function search()
    {
-    $amount =  explode(' - ', request('text'));
-     $min_price = preg_replace('/[^0-9]/','', $amount[0]);
-     $max_price = preg_replace('/[^0-9]/','', $amount[1]);
+     $price = request('text');
      $name = request('name');
 
       if($name)
@@ -58,9 +56,11 @@ class FrontendController extends Controller
         $products = Product::where('name', 'LIKE',  '%'.$name.'%')->paginate(20);
         return view('frontend.products', compact('products'));
       }
-      else 
+      elseif($price)
       {
-        
+        $amount =  explode(' - ', request('text'));
+        $min_price = preg_replace('/[^0-9]/','', $amount[0]);
+        $max_price = preg_replace('/[^0-9]/','', $amount[1]);
         $products = Product::whereBetween('price', [$min_price, $max_price])->paginate(20);
         return view('frontend.products', compact('products'));
       }
