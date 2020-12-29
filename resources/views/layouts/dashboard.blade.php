@@ -332,6 +332,18 @@
                                 <span>Faq</span>
                             </a>
                         </li>
+                        <li class="@yield('lg_banners_menu_active')">
+                            <a href="{{ route('lg-banners.index') }}">
+                                <i class="uil-file-question-alt"></i>
+                                <span>Large Banners</span>
+                            </a>
+                        </li>
+                        <li class="@yield('sm_banners_menu_active')">
+                            <a href="{{ route('sm-banners.index') }}">
+                                <i class="uil-file-question-alt"></i>
+                                <span>Small Banners</span>
+                            </a>
+                        </li>
 
                         <li class="@yield('coupon_menu_active')">
                             <a href="{{ route('coupon.index') }}">

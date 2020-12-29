@@ -25,34 +25,26 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="slider_area owl-carousel">
-                        <div class="single_slider d-flex align-items-center" data-bgimg="{{ asset('frontend_assets/img/slider/slider11.png') }}">
+                        @foreach ($banners as $item)
+                        <div class="single_slider d-flex align-items-center" data-bgimg="{{ asset('uploads/lg_banners') }}/{{ $item->image }}">
                             <div class="slider_content slider_c_six">
-                                <h2>Wall hanging</h2>
-                                <h1>Open sealf </h1>
-                                <a href="shop.html">shop now</a>
+                                <h2>{{ strtoupper($item->title) }}</h2>
+                                <h1>{{ strtoupper($item->sub_title) }}</h1>
+                                <a href="{{ $item->link }}">shop now</a>
                             </div>
                         </div>
-                        <div class="single_slider d-flex align-items-center" data-bgimg="{{ asset('frontend_assets/img/slider/slider12.jpg') }}">
-                            <div class="slider_content slider_c_six">
-                                <h2>thin prescription glasses</h2>
-                                <h1>MEN,S LEOPARD</h1>
-                                <a href="shop.html">shop now</a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="banner_sidebar">
+                        @foreach ($sm_banners as $item)
                         <div class="single_banner">
                             <div class="banner_thumb">
-                                <a href="shop.html"><img src="{{ asset('frontend_assets/img/bg/banner5.png') }}" alt=""></a>
+                                <a href="{{ $item->link }}"><img src="{{ asset('uploads/sm_banners') }}/{{ $item->image }}" alt=""></a>
                             </div>
                         </div>
-                        <div class="single_banner">
-                            <div class="banner_thumb">
-                                <a href="shop.html"><img src="{{ asset('frontend_assets/img/bg/banner6.png') }}" alt=""></a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

@@ -7,6 +7,8 @@ use App\Models\Blog;
 use App\Models\About;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\LargeBanner;
+use App\Models\SmallBanner;
 use App\Models\SubCategory;
 use App\Mail\VisitorQueries;
 use Illuminate\Http\Request;
@@ -19,6 +21,8 @@ class FrontendController extends Controller
        return view('frontend.index',[
            'products' => Product::latest()->get(),
            'blogs'    => Blog::latest()->get(),
+           'banners'  => LargeBanner::latest()->get(),
+           'sm_banners'  => SmallBanner::latest()->get(),
        ]);
    }
 

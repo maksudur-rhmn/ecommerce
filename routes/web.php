@@ -1,18 +1,20 @@
 <?php
 
-use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\FooterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\FooterController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\LargeBannerController;
+use App\Http\Controllers\SmallBannerController;
 use App\Http\Controllers\SubCategoryController;
 
 /*
@@ -99,3 +101,13 @@ Route::get('/customer', function(){
 
 // Search Controller 
 Route::get('/search', [FrontendController::class, 'search']);
+
+// LargeBanner Controller 
+Route::get('/lg-banners', [LargeBannerController::class, 'index'])->name('lg-banners.index');
+Route::post('/lg-banners/store', [LargeBannerController::class, 'store'])->name('lg-banners.store');
+Route::get('/lg-banners/{id}/delete', [LargeBannerController::class, 'delete'])->name('lg-banners.delete');
+
+// SmallBanner Controller 
+Route::get('/sm-banners', [SmallBannerController::class, 'index'])->name('sm-banners.index');
+Route::post('/sm-banners/store', [SmallBannerController::class, 'store'])->name('sm-banners.store');
+Route::get('/sm-banners/{id}/delete', [SmallBannerController::class, 'delete'])->name('sm-banners.delete');
