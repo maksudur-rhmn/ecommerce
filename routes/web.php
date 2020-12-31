@@ -11,9 +11,11 @@ use App\Http\Controllers\FooterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\LargeBannerController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SmallBannerController;
 use App\Http\Controllers\SubCategoryController;
 
@@ -30,6 +32,8 @@ use App\Http\Controllers\SubCategoryController;
 
 // Dashboard Overview Controller
 Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+Route::get('/promote/{id}/admin', [AdminController::class, 'promote'])->name('promote.admin');
+Route::get('/demote/{id}/admin', [AdminController::class, 'demote'])->name('demote.admin');
 
 // Category Controller
 Route::get('/categories/{id}/delete', [CategoryController::class, 'delete'])->name('categories.delete');
@@ -95,9 +99,8 @@ Route::get('/footer', [FooterController::class, 'index'])->name('footer.index');
 Route::post('/footer/store', [FooterController::class, 'store'])->name('footer.store');
 
 // Customer Controller 
-Route::get('/customer', function(){
-  echo "Hello Customer";
-});
+Route::get('/customer', [CustomerController::class, 'index'])->name('customer.dashboard');
+Route::get('/notification/{id}/update', [CustomerController::class, 'notification'])->name('notification.update');
 
 // Search Controller 
 Route::get('/search', [FrontendController::class, 'search']);
@@ -111,3 +114,8 @@ Route::get('/lg-banners/{id}/delete', [LargeBannerController::class, 'delete'])-
 Route::get('/sm-banners', [SmallBannerController::class, 'index'])->name('sm-banners.index');
 Route::post('/sm-banners/store', [SmallBannerController::class, 'store'])->name('sm-banners.store');
 Route::get('/sm-banners/{id}/delete', [SmallBannerController::class, 'delete'])->name('sm-banners.delete');
+
+// Order Controller
+Route::get('/order/cod', [OrderController::class, 'cod'])->name('orders.cod');
+Route::get('/order/bkash', [OrderController::class, 'bkash'])->name('orders.bkash');
+Route::post('/order/update', [OrderController::class, 'update'])->name('orders.update');

@@ -27,6 +27,8 @@ class CreateOrdersTable extends Migration
             $table->string('total');
             $table->string('discount')->nullable();
             $table->longText('notes')->nullable();
+            $table->enum('status', ['processing', 'pending', 'cancelled', 'delivered'])->default('pending');
+            $table->enum('notification', ['seen', 'unseen'])->default('unseen');
             $table->timestamps();
         });
     }

@@ -41,3 +41,36 @@ function footer()
 {
   return App\Models\Footer::first();
 }
+
+function pendingorder($id)
+{
+  return App\Models\Order::where('user_id', $id)->where('status', 'pending')->where('notification', 'unseen')->orderBy('id', 'desc')->get();
+}
+function processingorder($id)
+{
+  return App\Models\Order::where('user_id', $id)->where('status', 'processing')->where('notification', 'unseen')->orderBy('id', 'desc')->get();
+}
+function cancelledorder($id)
+{
+  return App\Models\Order::where('user_id', $id)->where('status', 'cancelled')->where('notification', 'unseen')->orderBy('id', 'desc')->get();
+}
+function deliveredorder($id)
+{
+  return App\Models\Order::where('user_id', $id)->where('status', 'delivered')->where('notification', 'unseen')->orderBy('id', 'desc')->get();
+}
+function pending()
+{
+  return App\Models\Order::where('status', 'pending')->orderBy('id', 'desc')->get();
+}
+// function processing()
+// {
+//   return App\Models\Order::where('status', 'processing')->orderBy('id', 'desc')->get();
+// }
+// function cancelled()
+// {
+//   return App\Models\Order::where('status', 'cancelled')->orderBy('id', 'desc')->get();
+// }
+// function delivered()
+// {
+//   return App\Models\Order::where('status', 'delivered')->orderBy('id', 'desc')->get();
+// }

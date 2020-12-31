@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Ecommerce - Admin Panel
+    Darcheni | Cash on Delivery
 @endsection
 
 @section('meta_content')
@@ -33,6 +33,23 @@
     rel="stylesheet" type="text/css" />
 @endsection
 
+@section('category_menu_active')
+mm-active
+@endsection
+
+@section('page-name')
+Category
+@endsection
+
+@section('breadcrumb')
+<div class="page-title-right">
+    <ol class="breadcrumb m-0">
+        <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
+        <li class="breadcrumb-item active">Category</li>
+    </ol>
+</div>
+@endsection
+
 @section('bottom_js')
 <!-- Required datatable js -->
 
@@ -61,47 +78,17 @@
 <script src="{{ asset('dashboard_assets/js/pages/form-validation.init.js') }}"></script>
 @endsection
 
-
 @section('content')
 
-{{-- Error Message --}}
-@if($errors->all())
-<div class="alert alert-danger">
-    @foreach ($errors->all() as $error)
-    <li>{{ $error }}</li>
-    @endforeach
-</div>
-@endif
-
-{{-- Success Message --}}
-@if(session('success'))
-<div class="aler alert-success">
-    {{ session('success') }}
-</div>
-@endif
-
-{{-- Info Message --}}
-@if(session('info'))
-<div class="alert alert-info">
-    {{ session('info') }}
-</div>
-@endif
-
-{{-- Warning Message --}}
-@if(session('warning'))
-<div class="alert alert-warning">
-    {{ session('success') }}
-</div>
-@endif
-
 <div class="row">
+
     <div class="col-xl-10 m-auto">
         <div class="card">
             <div class="card-body">
 
-                <h4 class="card-title">Customer list</h4>
+                <h4 class="card-title">My Orders</h4>
                 <p class="card-title-desc">
-                    List of all the customers can be downloaded in PDF or Excel Format
+                    List of all the orders can be downloaded in PDF or Excel Format
                 </p>
 
                 <div class="table table-responsive">
@@ -110,23 +97,58 @@
                     <thead>
                         <tr>
                             <th>Sl</th>
-                            <th>Name</th>
-                            <th>Email</th>
+                            <th>Order Number</th>
+                            <th>Payment</th>
+                            <th>TRX ID</th>
+                            <th>Total</th>
+                            <th>Products</th>
                             <th>Status</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
 
 
                     <tbody>
-                        @foreach ($customers as $customer)
+                        @foreach ($orders as $order)
                         <tr>
                             <td>{{ $loop->index + 1 }}</td>
-                            <td>{{ $customer->name }}</td>
-                            <td>{{ $customer->email }}</td>
-                            <td>{{ ($customer->email_verified_at) ? 'Verified' : 'Not verified' }}</td>
+                            <td>#{{ $order->id }}</td>
+                            <td>{{ ucfirst($order->payment_method) }}</td>
+                            <td>{{ ($order->trx_id) ? $order->trx_id : 'cash on' }}</td>
+                            <td>@convert($order->total)</td>
+                            <td class="text-left">
+                                <ul class="text-left">
+                                    @foreach ($order->lists as $item)
+                                    <li>
+                                        <strong>
+                                            <a href="{{ route('frontend.productDetails', $item->getproducts->slug) }}">{{ ucfirst($item->getproducts->name) }}  <strong style="color:green">Qt.</strong> {{ $item->amount }}</a> 
+                                        </strong>
+                                        
+                                    </li>
+                                   @endforeach 
+                                </ul>
+                            </td>
                             <td>
-                                <a href="{{ route('promote.admin', $customer->id) }}" class="btn btn-success">Promote to Admin</a>
+                                @if($order->status == 'processing')
+                                    <span class="badge badge-primary">{{ ucfirst($order->status) }}</span>
+                                @elseif($order->status == 'pending')
+                                    <span class="badge badge-warning">{{ ucfirst($order->status) }}</span>
+                                @elseif($order->status == 'cancelled')
+                                    <span class="badge badge-danger">{{ ucfirst($order->status) }}</span>
+                                @elseif($order->status == 'delivered')
+                                    <span class="badge badge-success">{{ ucfirst($order->status) }}</span>
+                                @endif
+                                <form class="pb-3" action="{{ route('orders.update') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $order->id }}">
+                                  <select name="status" id="">
+                                      <option value="">Change Status</option>
+                                      <option value="pending">Pending</option>
+                                      <option value="processing">Processing</option>
+                                      <option value="cancelled">Cancelled</option>
+                                      <option value="delivered">Delivered</option>
+                                  </select>
+                                  <button type="submit" class="btn btn-sm btn-success">Update</button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
@@ -136,49 +158,6 @@
             </div>
         </div>
     </div> <!-- end col -->
-
-    <div class="col-xl-10 m-auto">
-        <div class="card">
-            <div class="card-body">
-
-                <h4 class="card-title">Admin list</h4>
-                <p class="card-title-desc">
-                    List of all the admins can be downloaded in PDF or Excel Format
-                </p>
-
-                <div class="table table-responsive">
-                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
-                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                    <thead>
-                        <tr>
-                            <th>Sl</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-
-
-                    <tbody>
-                        @foreach ($admins as $admin)
-                        <tr>
-                            <td>{{ $loop->index + 1 }}</td>
-                            <td>{{ $admin->name }}</td>
-                            <td>{{ $admin->email }}</td>
-                            <td>{{ ($admin->email_verified_at) ? 'Verified' : 'Not verified' }}</td>
-                            <td>
-                                <a href="{{ route('demote.admin', $admin->id) }}" class="btn btn-danger">Demote admin</a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                </div>
-            </div>
-        </div>
-    </div> <!-- end col -->
-
 </div>
 
 @endsection

@@ -34,7 +34,7 @@ class LargeBannerController extends Controller
         $banner = LargeBanner::create($request->except('_token') + ['created_at' => Carbon::now()]);
 
         $image = $request->file('image');
-        $filename = $banner->id. '-' .$image->extension('image');
+        $filename = $banner->id. '.' .$image->extension('image');
         $location = public_path('uploads/lg_banners/' . $filename);
         Image::make($image)->save($location);
 

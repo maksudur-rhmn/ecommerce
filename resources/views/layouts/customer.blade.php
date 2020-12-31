@@ -67,10 +67,9 @@
                     <!-- App Search-->
                     <form action="{{ url('/search') }}" method="GET" class="app-search d-none d-lg-block">
                         <div class="position-relative">
-                            <input type="text" name="name" class="form-control" placeholder="Search any products...">
+                            <input type="text" class="form-control" name="name" placeholder="Search any products...">
                             <span class="uil-search"></span>
                         </div>
-                    
                 </div>
 
                 <div class="d-flex">
@@ -85,10 +84,10 @@
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
                             aria-labelledby="page-header-search-dropdown">
 
-                            <form class="p-3" action="{{ url('/search') }}" method="GET">
+                            <form action="{{ url('/search') }}" method="GET" class="p-3">
                                 <div class="form-group m-0">
                                     <div class="input-group">
-                                        <input type="text" name="name" class="form-control" placeholder="Search any products ..."
+                                        <input type="text" class="form-control" name="name" placeholder="Search any products..."
                                             aria-label="Recipient's username">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="submit"><i
@@ -112,7 +111,7 @@
                             id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             <i class="uil-bell"></i>
-                            <span class="badge badge-danger badge-pill">{{ pending()->count() }}</span>
+                            <span class="badge badge-danger badge-pill">{{  pendingorder(Auth::id())->count() + cancelledorder(Auth::id())->count() + processingorder(Auth::id())->count() + deliveredorder(Auth::id())->count() }}</span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
                             aria-labelledby="page-header-notifications-dropdown">
@@ -124,15 +123,8 @@
                                 </div>
                             </div>
                             <div data-simplebar style="max-height: 230px;">
-
-                                @foreach (pending()->take(3) as $item)
-                                <a href="
-                                @if($item->payment_method == 'cash on delivery')
-                                  {{ route('orders.cod') }}
-                                @else
-                                  {{ route('orders.bkash') }}
-                                @endif
-                                " class="text-reset notification-item">
+                                @foreach (pendingorder(Auth::id())->take(1) as $item)
+                                <a href="{{ route('notification.update', $item->id) }}" class="text-reset notification-item">
                                     <div class="media">
                                         <div class="avatar-xs mr-3">
                                             <span class="avatar-title bg-primary rounded-circle font-size-16">
@@ -140,10 +132,66 @@
                                             </span>
                                         </div>
                                         <div class="media-body">
-                                            <h6 class="mt-0 mb-1">Your have a new order</h6>
+                                            <h6 class="mt-0 mb-1">Your order is placed</h6>
                                             <div class="font-size-12 text-muted">
-                                                <p class="mb-1">Your new order status is still pending.</p>
-                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> {{ $item->created_at->diffForHumans() }} </p>
+                                                <p class="mb-1">We will let you know as soon as the order starts processing</p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> {{ $item->created_at->diffForHumans() }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                @endforeach
+                                @foreach (processingorder(Auth::id())->take(1) as $item)
+                                <a href="{{ route('notification.update', $item->id) }}" class="text-reset notification-item">
+                                    <div class="media">
+                                        <div class="avatar-xs mr-3">
+                                            <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                                <i class="uil-shopping-basket"></i>
+                                            </span>
+                                        </div>
+                                        <div class="media-body">
+                                            <h6 class="mt-0 mb-1">Your order is processing</h6>
+                                            <div class="font-size-12 text-muted">
+                                                <p class="mb-1">We will let you know as soon as the order is delivered</p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> {{ $item->created_at->diffForHumans() }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                @endforeach
+
+                                @foreach (deliveredorder(Auth::id())->take(1) as $item)
+                                <a href="{{ route('notification.update', $item->id) }}" class="text-reset notification-item">
+                                    <div class="media">
+                                        <div class="avatar-xs mr-3">
+                                            <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                                <i class="uil-shopping-basket"></i>
+                                            </span>
+                                        </div>
+                                        <div class="media-body">
+                                            <h6 class="mt-0 mb-1">Your order is delivered</h6>
+                                            <div class="font-size-12 text-muted">
+                                                <p class="mb-1">Please let us know if you faced any problem with your delivery</p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> {{ $item->created_at->diffForHumans() }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                @endforeach
+
+                                @foreach (cancelledorder(Auth::id())->take(1) as $item)
+                                <a href="{{ route('notification.update', $item->id) }}" class="text-reset notification-item">
+                                    <div class="media">
+                                        <div class="avatar-xs mr-3">
+                                            <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                                <i class="uil-shopping-basket"></i>
+                                            </span>
+                                        </div>
+                                        <div class="media-body">
+                                            <h6 class="mt-0 mb-1">Your order is cancelled</h6>
+                                            <div class="font-size-12 text-muted">
+                                                <p class="mb-1">Please contact us for further details.</p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> {{ $item->created_at->diffForHumans() }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -153,7 +201,7 @@
                             </div>
                             <div class="p-2 border-top">
                                 <a class="btn btn-sm btn-link font-size-14 btn-block text-center"
-                                    href="{{ route('orders.cod') }}">
+                                    href="{{ url('/customer') }}">
                                     <i class="uil-arrow-circle-right mr-1"></i> View More..
                                 </a>
                             </div>
@@ -187,6 +235,13 @@
                                     </form>
                         </div>
                     </div>
+
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
+                            <i class="uil-cog"></i>
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </header>
@@ -214,10 +269,6 @@
                 </a>
             </div>
 
-            <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect vertical-menu-btn">
-                <i class="fa fa-fw fa-bars"></i>
-            </button>
-
             <div data-simplebar class="sidebar-menu-scroll">
 
                 <!--- Sidemenu -->
@@ -239,106 +290,6 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="uil-window-section"></i>
-                                <span>Orders</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="{{ route('orders.cod') }}">Cash on Delivery</a></li>
-                                <li><a href="{{ route('orders.bkash') }}">Bkash Orders</a></li>
-                            </ul>
-                    </li>
-                        <li class="@yield('category_menu_active')">
-                            <a href="{{ route('categories.index') }}">
-                                <i class="uil-shutter-alt"></i>
-                                <span>Category</span>
-                            </a>
-                        </li>
-
-                        <li class="@yield('sub_category_menu_active')">
-                            <a href="{{ route('subcategories.index') }}">
-                                <i class="uil-streering"></i>
-                                <span>Sub category</span>
-                            </a>
-                        </li>
-
-                        <li class="">
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="uil-shop"></i>
-                                <span>Products</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="{{ route('products.index') }}">Product list</a></li>
-                                <li><a href="{{ route('products.create') }}">Add Products</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="">
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="uil-500px"></i>
-                                <span>Blogs</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="{{ route('blog.index') }}">Blog list</a></li>
-                                <li><a href="{{ route('blog.create') }}">Add Blogs</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="@yield('faqs_menu_active')">
-                            <a href="{{ route('faqs.index') }}">
-                                <i class="uil-file-question-alt"></i>
-                                <span>Faq</span>
-                            </a>
-                        </li>
-                        <li class="@yield('lg_banners_menu_active')">
-                            <a href="{{ route('lg-banners.index') }}">
-                                <i class="uil-file-question-alt"></i>
-                                <span>Large Banners</span>
-                            </a>
-                        </li>
-                        <li class="@yield('sm_banners_menu_active')">
-                            <a href="{{ route('sm-banners.index') }}">
-                                <i class="uil-file-question-alt"></i>
-                                <span>Small Banners</span>
-                            </a>
-                        </li>
-
-                        <li class="@yield('coupon_menu_active')">
-                            <a href="{{ route('coupon.index') }}">
-                                <i class="uil-compact-disc"></i>
-                                <span>Coupons</span>
-                            </a>
-                        </li>
-                        <li class="@yield('about_menu_active')">
-                            <a href="{{ route('abouts.index') }}">
-                                <i class="uil-compact-disc"></i>
-                                <span>About</span>
-                            </a>
-                        </li>
-
-                        <li class="@yield('footer_menu_active')">
-                            <a href="{{ route('footer.index') }}">
-                                <i class="uil-align-center-v"></i>
-                                <span>Footer</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="uil-window-section"></i>
-                                <span>Layouts</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="layouts-horizontal.html">Horizontal</a></li>
-                                <li><a href="layouts-dark-sidebar.html">Dark Sidebar</a></li>
-                                <li><a href="layouts-compact-sidebar.html">Compact Sidebar</a></li>
-                                <li><a href="layouts-icon-sidebar.html">Icon Sidebar</a></li>
-                                <li><a href="layouts-boxed.html">Boxed Width</a></li>
-                                <li><a href="layouts-preloader.html">Preloader</a></li>
-                                <li><a href="layouts-colored-sidebar.html">Colored Sidebar</a></li>
-                            </ul>
-                    </li>
                     </ul>
                 </div>
                 <!-- Sidebar -->
@@ -382,7 +333,7 @@
                             <script>
                                 document.write(new Date().getFullYear())
 
-                            </script> © Ecommerce.
+                            </script> © Ecommerce. Developed by <a href="https://dgtaltech.com">Digital Tech</a>
                         </div>
                         <div class="col-sm-6">
                             <div class="text-sm-right d-none d-sm-block">
