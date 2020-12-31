@@ -137,7 +137,24 @@ Category
                                 @elseif($order->status == 'delivered')
                                     <span class="badge badge-success">{{ ucfirst($order->status) }}</span>
                                 @endif
-                                
+                                <form class="pb-3" action="{{ route('orders.update') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $order->id }}">
+                                     @if($order->status == 'cancelled')
+                                     <select style="display: none;" name="status" id="">
+                                        <option value="pending"></option>
+                                    </select>
+                                    <button type="submit" class="btn btn-sm btn-success">Re-issue order</button>
+                                    </form>
+                                     @elseif($order->status == 'delivered')
+                                     
+                                     @else 
+                                     <select style="display: none;" name="status" id="">
+                                        <option value="cancelled">Cancelled</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-sm btn-success">Cancel order</button>
+                                     @endif
+                                    </form>
                             </td>
                         </tr>
                         @endforeach

@@ -11,6 +11,7 @@ class OrderController extends Controller
    {
        $this->middleware('auth:sanctum');
        $this->middleware('verified');
+       $this->middleware('checkRole')->except('update');
    }
 
    public function cod()
