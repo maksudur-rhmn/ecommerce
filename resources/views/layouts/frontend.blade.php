@@ -240,7 +240,7 @@
             </div>
         </div>
         <!--mini cart-->
-        <div class="mini_cart">
+        <div class="mini_cart" style="overflow-y: scroll !important;">
             <div class="cart_gallery">
                 <div class="cart_close">
                     <div class="cart_text">

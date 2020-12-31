@@ -57,12 +57,34 @@
 
                             <div class=" product_ratting">
                                 <ul>
+                                    @if(average_stars($product->id) == 1)
+                                    <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                    <li class="review"><a href="#"> (customer review ) </a></li>
+                                    @elseif(average_stars($product->id) == 2)
+                                    <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                    <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                    <li class="review"><a href="#"> (customer review ) </a></li>
+                                    @elseif(average_stars($product->id) == 3)
+                                    <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                    <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                    <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                    <li class="review"><a href="#"> (customer review ) </a></li>
+                                    @elseif(average_stars($product->id) == 4)
+                                    <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                    <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                    <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                    <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                    <li class="review"><a href="#"> (customer review ) </a></li>
+                                    @elseif(average_stars($product->id) == 5)
                                     <li><a href="#"><i class="ion-android-star"></i></a></li>
                                     <li><a href="#"><i class="ion-android-star"></i></a></li>
                                     <li><a href="#"><i class="ion-android-star"></i></a></li>
                                     <li><a href="#"><i class="ion-android-star"></i></a></li>
                                     <li><a href="#"><i class="ion-android-star"></i></a></li>
                                     <li class="review"><a href="#"> (customer review ) </a></li>
+                                    @else 
+                                    <p>No ratings yet.</p>
+                                    @endif
                                 </ul>
                             </div>
                             <div class="price_box">
@@ -158,7 +180,7 @@
                                     <a data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet" aria-selected="false">Specification</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews (1)</a>
+                                    <a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews ({{ \App\Models\Order_list::where('user_id', Auth::id())->where('product_id', $product->id)->whereNotNull('review')->get()->count() }})</a>
                                 </li>
                             </ul>
                         </div>
@@ -199,62 +221,93 @@
 
                             <div class="tab-pane fade" id="reviews" role="tabpanel">
                                 <div class="reviews_wrapper">
-                                    <h2>1 review for Donec eu furniture</h2>
+                                    <h2>1 review for {{ ucfirst($product->name) }}</h2>
                                     <div class="reviews_comment_box">
-                                        <div class="comment_thmb">
-                                            <img src="assets/img/blog/comment2.jpg" alt="">
-                                        </div>
                                         <div class="comment_text">
+                                            @forelse(\App\Models\Order_list::where('product_id', $product->id)->whereNotNull('review')->get() as $review)
                                             <div class="reviews_meta">
                                                 <div class="star_rating">
                                                     <ul>
+                                                        @if($review->star == 1)
+                                                        <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                                        @elseif($review->star == 2)
+                                                        <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                                        <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                                        @elseif($review->star == 3)
+                                                        <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                                        <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                                        <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                                        @elseif($review->star == 4)
+                                                        <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                                        <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                                        <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                                        <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                                        @elseif($review->star == 5)
                                                         <li><a href="#"><i class="ion-android-star"></i></a></li>
                                                         <li><a href="#"><i class="ion-android-star"></i></a></li>
                                                         <li><a href="#"><i class="ion-android-star"></i></a></li>
                                                         <li><a href="#"><i class="ion-android-star"></i></a></li>
                                                         <li><a href="#"><i class="ion-android-star"></i></a></li>
+                                                        @endif
                                                     </ul>
                                                 </div>
-                                                <p><strong>admin </strong>- September 12, 2018</p>
-                                                <span>roadthemes</span>
+                                                <p><strong> {{ $review->getuser->name }} </strong>
+                                                    - {{ $review->updated_at->format('d M , Y') }}</p>
+                                                <span>{{ $review->review }}</span>
                                             </div>
+                                            @empty 
+                                            <p>This product has not yet been reviewed</p>
+                                            @endforelse
                                         </div>
 
                                     </div>
+                                    @guest
+                                        Please <a href="{{ url('/login') }}"> <strong>Log in</strong> </a> to review this product
+                                    @endguest
+                                    @auth 
+                                    @if(\App\Models\Order_list::where('user_id', Auth::id())->where('product_id', $product->id)->whereNull('review')->exists())
                                     <div class="comment_title">
                                         <h2>Add a review </h2>
                                         <p>Your email address will not be published. Required fields are marked </p>
                                     </div>
-                                    <div class="product_ratting mb-10">
-                                        <h3>Your rating</h3>
-                                        <ul>
-                                            <li><a href="#"><i class="ion-android-star"></i></a></li>
-                                            <li><a href="#"><i class="ion-android-star"></i></a></li>
-                                            <li><a href="#"><i class="ion-android-star"></i></a></li>
-                                            <li><a href="#"><i class="ion-android-star"></i></a></li>
-                                            <li><a href="#"><i class="ion-android-star"></i></a></li>
-                                        </ul>
+                                    
+                                    <div class="form-group form-group__rating">
+                                        <form action="{{ route('add.review') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        <label>Your rating of this product</label>
+                                        <select name="star" class="ps-rating" data-read-only="false" required>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
                                     </div>
                                     <div class="product_review_form">
-                                        <form action="#">
+                                        
                                             <div class="row">
                                                 <div class="col-12">
                                                     <label for="review_comment">Your review </label>
-                                                    <textarea name="comment" id="review_comment"></textarea>
+                                                    <textarea name="review" id="review_comment" required></textarea>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6">
                                                     <label for="author">Name</label>
-                                                    <input id="author" type="text">
+                                                    <input id="author" type="text" value="{{ Auth::user()->name }}">
 
                                                 </div>
                                                 <div class="col-lg-6 col-md-6">
                                                     <label for="email">Email </label>
-                                                    <input id="email" type="text">
+                                                    <input id="email" type="text" value="{{ Auth::user()->email }}">
                                                 </div>
                                             </div>
                                             <button type="submit">Submit</button>
                                         </form>
                                     </div>
+                                    @else
+                                    <h5>Only Customers who bought the product can review the items. Or you may have already reviewed the item</h5>
+                                    @endif
+                                    @endauth
                                 </div>
                             </div>
                         </div>

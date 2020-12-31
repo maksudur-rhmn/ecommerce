@@ -62,15 +62,24 @@ function pending()
 {
   return App\Models\Order::where('status', 'pending')->orderBy('id', 'desc')->get();
 }
-// function processing()
-// {
-//   return App\Models\Order::where('status', 'processing')->orderBy('id', 'desc')->get();
-// }
-// function cancelled()
-// {
-//   return App\Models\Order::where('status', 'cancelled')->orderBy('id', 'desc')->get();
-// }
-// function delivered()
-// {
-//   return App\Models\Order::where('status', 'delivered')->orderBy('id', 'desc')->get();
-// }
+
+function average_stars($product_id)
+{
+
+    if(!App\Models\Order_list::where('product_id', $product_id)->exists())
+    {
+        return 0;
+    }
+    if(App\Models\Order_list::where('product_id', $product_id)->whereNotNull('star')->exists())
+    {
+        $average = App\Models\Order_list::where('product_id', $product_id)->whereNotNull('star')->sum('star')/App\Models\Order_list::where('product_id', $product_id)->whereNotNull('star')->count();
+        return floor($average);
+    }
+    if(App\Models\Order_list::where('product_id', $product_id)->whereNull('star')->exists())
+    {
+        return 0;
+    }
+    $average = App\Models\Order_list::where('product_id', $product_id)->whereNotNull('star')->sum('star')/App\Models\Order_list::where('product_id', $product_id)->whereNotNull('star')->count();
+    return floor($average);
+
+}

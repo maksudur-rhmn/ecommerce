@@ -101,6 +101,7 @@ Route::post('/footer/store', [FooterController::class, 'store'])->name('footer.s
 // Customer Controller 
 Route::get('/customer', [CustomerController::class, 'index'])->name('customer.dashboard');
 Route::get('/notification/{id}/update', [CustomerController::class, 'notification'])->name('notification.update');
+Route::post('add/review', [CustomerController::class, 'addreview'])->name('add.review');
 
 // Search Controller 
 Route::get('/search', [FrontendController::class, 'search']);

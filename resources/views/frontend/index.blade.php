@@ -108,11 +108,34 @@
                                                     <h4 class="product_name"><a href="{{ route('frontend.productDetails', $product->slug) }}">{{ ucfirst($product->name) }}</a></h4>
                                                     <div class="product_rating">
                                                         <ul>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                            @if(average_stars($product->id) == 1)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @elseif(average_stars($product->id) == 2)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @elseif(average_stars($product->id) == 3)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @elseif(average_stars($product->id) == 4)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @elseif(average_stars($product->id) == 5)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @else 
+                                                            <p>No ratings yet.</p>
+                                                            @endif
                                                         </ul>
                                                     </div>
                                                     <div class="price_box">
@@ -205,11 +228,34 @@
                                                     <h4 class="product_name"><a href="{{ route('frontend.productDetails', $product->slug) }}">{{ ucfirst($product->name) }}</a></h4>
                                                     <div class="product_rating">
                                                         <ul>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                            @if(average_stars($product->id) == 1)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @elseif(average_stars($product->id) == 2)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @elseif(average_stars($product->id) == 3)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @elseif(average_stars($product->id) == 4)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @elseif(average_stars($product->id) == 5)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @else 
+                                                            <p>No ratings yet.</p>
+                                                            @endif
                                                         </ul>
                                                     </div>
                                                     <div class="price_box">
@@ -269,11 +315,34 @@
                                                     <h4 class="product_name"><a href="{{ route('frontend.productDetails', $product->slug) }}">{{ ucfirst($product->name) }}</a></h4>
                                                     <div class="product_rating">
                                                         <ul>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                            @if(average_stars($product->id) == 1)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @elseif(average_stars($product->id) == 2)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @elseif(average_stars($product->id) == 3)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @elseif(average_stars($product->id) == 4)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @elseif(average_stars($product->id) == 5)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @else 
+                                                            <p>No ratings yet.</p>
+                                                            @endif
                                                         </ul>
                                                     </div>
                                                     <div class="price_box">
@@ -334,11 +403,34 @@
                                                     <h4 class="product_name"><a href="{{ route('frontend.productDetails', $product->slug) }}">{{ ucfirst($product->name) }}</a></h4>
                                                     <div class="product_rating">
                                                         <ul>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                            <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                            @if(average_stars($product->id) == 1)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @elseif(average_stars($product->id) == 2)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @elseif(average_stars($product->id) == 3)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @elseif(average_stars($product->id) == 4)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @elseif(average_stars($product->id) == 5)
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li class="review"><a href="#"> (customer review ) </a></li>
+                                                            @else 
+                                                            <p>No ratings yet.</p>
+                                                            @endif
                                                         </ul>
                                                     </div>
                                                     <div class="price_box">
@@ -456,11 +548,34 @@
                                         <h4 class="product_name"><a href="{{ route('frontend.productDetails', $product->slug) }}">{{ ucfirst($product->name) }}</a></h4>
                                         <div class="product_rating">
                                             <ul>
-                                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                                                @if(average_stars($product->id) == 1)
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li class="review"><a href="#"> (customer review ) </a></li>
+                                                @elseif(average_stars($product->id) == 2)
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li class="review"><a href="#"> (customer review ) </a></li>
+                                                @elseif(average_stars($product->id) == 3)
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li class="review"><a href="#"> (customer review ) </a></li>
+                                                @elseif(average_stars($product->id) == 4)
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li class="review"><a href="#"> (customer review ) </a></li>
+                                                @elseif(average_stars($product->id) == 5)
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li class="review"><a href="#"> (customer review ) </a></li>
+                                                @else 
+                                                <p>No ratings yet.</p>
+                                                @endif
                                             </ul>
                                         </div>
                                         <div class="price_box">
