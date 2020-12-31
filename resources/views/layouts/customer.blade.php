@@ -236,12 +236,6 @@
                         </div>
                     </div>
 
-                    <div class="dropdown d-inline-block">
-                        <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
-                            <i class="uil-cog"></i>
-                        </button>
-                    </div>
-
                 </div>
             </div>
         </header>
@@ -268,6 +262,10 @@
                     </span>
                 </a>
             </div>
+
+            <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect vertical-menu-btn">
+                <i class="fa fa-fw fa-bars"></i>
+            </button>
 
             <div data-simplebar class="sidebar-menu-scroll">
 
