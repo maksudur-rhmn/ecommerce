@@ -188,44 +188,6 @@
          </div>
          <!--shop  area end-->
          
-         <!--brand area start-->
-         <div class="brand_area">
-            <div class="row">
-                 <div class="col-12">
-                     <div class="section_title">
-                         <h2>Brand</h2>
-                     </div>   
-                 </div>
-             </div>
-             <div class="row">
-                 <div class="col-12">
-                     <div class="brand_container owl-carousel ">
-                         <div class="single_brand">
-                             <a href="#"><img src="{{ asset('frontend_assets/img/brand/brand1.jpg') }}" alt=""></a>
-                         </div>
-                         <div class="single_brand">
-                             <a href="#"><img src="{{ asset('frontend_assets/img/brand/brand2.jpg') }}" alt=""></a>
-                         </div>
-                         <div class="single_brand">
-                             <a href="#"><img src="{{ asset('frontend_assets/img/brand/brand3.jpg') }}" alt=""></a>
-                         </div>
-                         <div class="single_brand">
-                             <a href="#"><img src="{{ asset('frontend_assets/img/brand/brand4.jpg') }}" alt=""></a>
-                         </div>
-                         <div class="single_brand">
-                             <a href="#"><img src="{{ asset('frontend_assets/img/brand/brand1.jpg') }}" alt=""></a>
-                         </div>
-                         <div class="single_brand">
-                             <a href="#"><img src="{{ asset('frontend_assets/img/brand/brand2.jpg') }}" alt=""></a>
-                         </div>
-                         <div class="single_brand">
-                             <a href="#"><img src="{{ asset('frontend_assets/img/brand/brand3.jpg') }}" alt=""></a>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-         <!--brand area end-->
     </div>
 </div>
 <!--section bg area end-->

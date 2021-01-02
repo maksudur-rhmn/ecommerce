@@ -71,7 +71,7 @@
                                     <a href="{{ route('frontend.index') }}}}">Home</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="#">Shop</a>
+                                    <a href="{{ route('frontend.productsAll') }}">Shop</a>
                                     <ul class="sub-menu">
                                         @foreach (categories() as $category)
                                         <li class="menu-item-has-children">
@@ -202,7 +202,7 @@
                                 <nav>
                                     <ul>
                                         <li><a class="active" href="{{ route('frontend.index') }}">home</a></li>
-                                        <li class="mega_items"><a href="">shop<i class="fa fa-angle-down"></i></a>
+                                        <li class="mega_items"><a href="{{ route('frontend.productsAll') }}">shop<i class="fa fa-angle-down"></i></a>
                                             <div class="mega_menu">
                                                 <ul class="mega_menu_inner">
                                                   @foreach (categories() as $category)
