@@ -95,7 +95,7 @@
 @endif
 
 <div class="row">
-@hasrole(['Admin', 'Moderator'])
+@hasrole(['Admin')
 <div class="col-xl-10 m-auto">
     <div class="card">
         <div class="card-body">
