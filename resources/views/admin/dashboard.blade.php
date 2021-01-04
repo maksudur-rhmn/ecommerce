@@ -179,8 +179,6 @@
         </div>
     </div>
 </div> <!-- end col -->
-@else 
-<h5>Only Admin & Moderator can access the user list.</h5>
 @endhasrole
 
 </div>
