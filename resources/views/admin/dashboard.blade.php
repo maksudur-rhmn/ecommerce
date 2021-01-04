@@ -95,7 +95,7 @@
 @endif
 
 <div class="row">
-    @if(Auth::->user()->hasRole('Admin') || Auth::->user()->hasRole('Moderator'))
+    @if(Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Moderator'))
 <div class="col-xl-10 m-auto">
     <div class="card">
         <div class="card-body">
