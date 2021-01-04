@@ -95,92 +95,7 @@
 @endif
 
 <div class="row">
-@hasrole('Admin')
-<div class="col-xl-10 m-auto">
-    <div class="card">
-        <div class="card-body">
-
-            <h4 class="card-title">Customer list</h4>
-            <p class="card-title-desc">
-                List of all the customers can be downloaded in PDF or Excel Format
-            </p>
-
-            <div class="table table-responsive">
-                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
-                style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                <thead>
-                    <tr>
-                        <th>Sl</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-
-
-                <tbody>
-                    @foreach ($customers as $customer)
-                    <tr>
-                        <td>{{ $loop->index + 1 }}</td>
-                        <td>{{ $customer->name }}</td>
-                        <td>{{ $customer->email }}</td>
-                        <td>{{ ($customer->email_verified_at) ? 'Verified' : 'Not verified' }}</td>
-                        <td>
-                            <a href="{{ route('promote.admin', $customer->id) }}" class="btn btn-success">Promote to Admin</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            </div>
-        </div>
-    </div>
-</div> <!-- end col -->
-
-<div class="col-xl-10 m-auto">
-    <div class="card">
-        <div class="card-body">
-
-            <h4 class="card-title">Admin list</h4>
-            <p class="card-title-desc">
-                List of all the admins can be downloaded in PDF or Excel Format
-            </p>
-
-            <div class="table table-responsive">
-                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
-                style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                <thead>
-                    <tr>
-                        <th>Sl</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-
-
-                <tbody>
-                    @foreach ($admins as $admin)
-                    <tr>
-                        <td>{{ $loop->index + 1 }}</td>
-                        <td>{{ $admin->name }}</td>
-                        <td>{{ $admin->email }}</td>
-                        <td>{{ ($admin->email_verified_at) ? 'Verified' : 'Not verified' }}</td>
-                        <td>
-                            <a href="{{ route('demote.admin', $admin->id) }}" class="btn btn-danger">Demote admin</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            </div>
-        </div>
-    </div>
-</div> <!-- end col -->
-@endhasrole
-@hasrole('Moderator')
+@hasrole(['Admin', 'Moderator'])
 <div class="col-xl-10 m-auto">
     <div class="card">
         <div class="card-body">
@@ -265,7 +180,7 @@
     </div>
 </div> <!-- end col -->
 @else 
-<h5>Only Admin and Moderator can view the user list.</h5>
+<h5>Only Admin & Moderator can access the user list.</h5>
 @endhasrole
 
 </div>
