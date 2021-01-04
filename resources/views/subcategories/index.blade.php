@@ -165,9 +165,13 @@ Category
                             <td><strong>{{ ucfirst($subcategory->name) }}</strong></td>
                             <td>{{ ucfirst($subcategory->hasCategory->name) }}</td>
                             <td>
+                                @can('edit')
                                 <a href="{{ route('subcategories.edit', $subcategory->id) }}"><i
-                                        class="text-warning fas fa-edit mr-1"></i></a>
+                                    class="text-warning fas fa-edit mr-1"></i></a>
+                                @endcan
+                                @can('delete')
                                 <a href="{{ route('subcategories.delete', $subcategory->id) }}"><i class="text-danger fas fa-trash"></i></a>
+                                @endcan
 
                             </td>
                         </tr>

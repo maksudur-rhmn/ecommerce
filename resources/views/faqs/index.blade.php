@@ -162,9 +162,13 @@ Frequently Asked Question
                             <td>{{ ucfirst($faq->answer) }}</td>
                             <td>{{ $faq->created_at->diffForHumans() }}</td>
                             <td>
+                                @can('edit')
                                 <a href="{{ route('faqs.edit', $faq->id) }}"><i
-                                        class="text-warning fas fa-edit mr-1"></i></a>
+                                    class="text-warning fas fa-edit mr-1"></i></a>
+                                @endcan
+                                @can('delete')
                                 <a href="{{ route('faqs.delete', $faq->id) }}"><i class="text-danger fas fa-trash"></i></a>
+                                @endcan
                             </td>
                         </tr>
                         @endforeach 

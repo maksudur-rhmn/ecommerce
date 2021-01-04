@@ -163,7 +163,9 @@ Category
                                     width="100">
                             </td>
                             <td>
+                                @can('delete')
                                 <a href="{{ route('sm-banners.delete', $banner->id) }}"><i class="text-danger fas fa-trash"></i></a>
+                                @endcan
 
                             </td>
                         </tr>

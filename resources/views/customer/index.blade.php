@@ -13,7 +13,7 @@
 @endsection
 
 @section('page-name')
-   Admin Dashboard
+   Customer Dashboard
 @endsection
 
 @section('breadcrumb')
@@ -120,7 +120,12 @@ Category
                                     @foreach ($order->lists as $item)
                                     <li>
                                         <strong>
-                                            <a href="{{ route('frontend.productDetails', $item->getproducts->slug) }}">{{ ucfirst($item->getproducts->name) }}  <strong style="color:green">Qt.</strong> {{ $item->amount }}</a> 
+                                            <a href="{{ route('frontend.productDetails', $item->getproducts->slug) }}">
+                                                {{ ucfirst($item->getproducts->name) }} 
+                                                 <strong style="color:green">Qt.</strong> {{ $item->amount }}
+                                                 <strong style="color:green">Size.</strong> {{ $item->size }}
+                                                 <strong style="color:green">Color.</strong> {{ $item->color }}
+                                                </a> 
                                         </strong>
                                         
                                     </li>

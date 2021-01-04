@@ -135,6 +135,7 @@
                                         <option value="bkash">Bkash</option>
                                     </select>
                                </div>
+
                                <div class="py-3 text-center">
                                    <img src="{{ asset('uploads/bkash.png') }}" alt="">
                                    <h2>+88017111234567 (Personal)</h2>

@@ -21,6 +21,8 @@ class CreateOrderListsTable extends Migration
             $table->string('amount');
             $table->integer('star')->nullable();
             $table->longText('review')->nullable();
+            $table->string('size')->nullable();
+            $table->string('color')->nullable();
             $table->timestamps();
         });
     }

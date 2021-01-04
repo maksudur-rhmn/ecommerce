@@ -82,7 +82,7 @@ Category
 
 <div class="row">
 
-    <div class="col-xl-10 m-auto">
+    <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
 
@@ -93,11 +93,14 @@ Category
 
                 <div class="table table-responsive">
                     <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap"
-                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    style="border-collapse: collapse; border-spacing: 0; width: 100%; overflow-y:scroll">
                     <thead>
                         <tr>
-                            <th>Sl</th>
                             <th>Order Number</th>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Email</th>
+                            <th>Phone</th>
                             <th>Payment</th>
                             <th>TRX ID</th>
                             <th>Total</th>
@@ -110,8 +113,11 @@ Category
                     <tbody>
                         @foreach ($orders as $order)
                         <tr>
-                            <td>{{ $loop->index + 1 }}</td>
                             <td>#{{ $order->id }}</td>
+                            <td>{{ $order->first_name }} {{ $order->last_name }}</td>
+                            <td>{{ $order->address }}</td>
+                            <td>{{ $order->email }}</td>
+                            <td>{{ $order->phone }}</td>
                             <td>{{ ucfirst($order->payment_method) }}</td>
                             <td>{{ ($order->trx_id) ? $order->trx_id : 'cash on' }}</td>
                             <td>@convert($order->total)</td>
@@ -120,7 +126,12 @@ Category
                                     @foreach ($order->lists as $item)
                                     <li>
                                         <strong>
-                                            <a href="{{ route('frontend.productDetails', $item->getproducts->slug) }}">{{ ucfirst($item->getproducts->name) }}  <strong style="color:green">Qt.</strong> {{ $item->amount }}</a> 
+                                            <a href="{{ route('frontend.productDetails', $item->getproducts->slug) }}">
+                                                {{ ucfirst($item->getproducts->name) }}  
+                                                <strong style="color:green">Qt.</strong> {{ $item->amount }} 
+                                                <strong style="color:green">Size.</strong> {{ $item->size }} 
+                                                <strong style="color:green">Color.</strong>{{ $item->color }}
+                                            </a> 
                                         </strong>
                                         
                                     </li>

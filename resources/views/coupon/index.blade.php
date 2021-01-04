@@ -118,7 +118,9 @@ Coupons
               @endif
             </td>
             <td>
+              @can('edit')
               <a href="{{ route('coupon.edit', $coupon->id) }}" class="btn btn-warning">Edit</a>
+              @endcan
             </td>
           </tr>
           @endforeach

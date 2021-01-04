@@ -732,7 +732,9 @@
                                  <div class="variants_selects">
                                      <div class="variants_size">
                                          <h2>size</h2>
-                                         <select class="select_option">
+                                         <form method="POST" action="{{ route('cart.store') }}">
+                                        @csrf
+                                         <select name="size" class="select_option">
                                              @if($product->hasSizes->size != "")
                                              @foreach(explode(' ', $product->hasSizes->size) as $info) 
                                              <option value="{{ $info }}">{{ ucfirst($info) }}</option>
@@ -742,7 +744,7 @@
                                      </div>
                                      <div class="variants_color">
                                          <h2>color</h2>
-                                         <select class="select_option">
+                                         <select name="color" class="select_option">
                                              @if($product->hasColors->colors != "")
                                              @foreach(explode(',', $product->hasColors->colors) as $info) 
                                              <option value="{{ $info }}">{{ ucfirst($info) }}</option>
@@ -751,11 +753,26 @@
                                          </select>
                                      </div>
                                      <div class="modal_add_to_cart">
-                                        <form method="POST" action="{{ route('cart.store') }}">
-                                            @csrf
+                                        
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                                             <input min="1" max="100" value="1" type="number" name="cart_amount">
-                                            <button type="submit">add to cart</button>
+                                            <button 
+                                                style="   background: none;
+                                                border: 1px solid #232323;
+                                                margin-left: 10px;
+                                                font-size: 12px;
+                                                font-weight: 700;
+                                                height: 45px;
+                                                width: 230px;
+                                                line-height: 18px;
+                                                padding: 10px 15px;
+                                                text-transform: uppercase;
+                                                background: #232323;
+                                                color: #ffffff;
+                                                -webkit-transition: 0.3s;
+                                                transition: 0.3s;
+                                                cursor: pointer;"
+                                            type="submit">add to cart</button>
                                         </form>
                                      </div>
                                  </div>

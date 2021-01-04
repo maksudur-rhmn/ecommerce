@@ -138,9 +138,15 @@ Products
                                     width="100">
                             </td>
                             <td>
-                                <a href="{{ route('products.show', $product->id) }}"><i class="fas fa-eye text-success"></i></a>
-                                <a href="{{ route('products.edit', $product->id) }}"><i class="text-warning fas fa-edit mr-1"></i></a>
-                                <a href="{{ route('products.delete', $product->id) }}"><i class="text-danger fas fa-trash"></i></a>
+                               @can('view')
+                               <a href="{{ route('products.show', $product->id) }}"><i class="fas fa-eye text-success"></i></a>
+                               @endcan
+                               @can('edit')
+                               <a href="{{ route('products.edit', $product->id) }}"><i class="text-warning fas fa-edit mr-1"></i></a>
+                               @endcan
+                               @can('delete')
+                               <a href="{{ route('products.delete', $product->id) }}"><i class="text-danger fas fa-trash"></i></a>
+                               @endcan
                             </td>
                         </tr>
                         @endforeach

@@ -128,8 +128,12 @@ Blogs
                                     width="100">
                             </td>
                             <td>
+                                @can('edit')
                                 <a href="{{ route('blog.edit', $blog->id) }}"><i class="text-warning fas fa-edit mr-1"></i></a>
+                                @endcan
+                                @can('delete')
                                 <a href="{{ route('blog.delete', $blog->id) }}"><i class="text-danger fas fa-trash"></i></a>
+                                @endcan
                             </td>
                         </tr>
                         @endforeach

@@ -57,6 +57,8 @@ class CartController extends Controller
             'ip_address'  => $request->ip(),
             'cart_amount' => $request->cart_amount,
             'product_id'  => $request->product_id,
+            'size'        => $request->size,
+            'color'       => $request->color,
             'created_at'  => Carbon::now(),
           ]);
           return back()->withSuccess('Product Added to Cart');

@@ -62,6 +62,7 @@ About
     {{ session('success') }}
 </div>
 @endif
+@hasrole(['Admin', 'Moderator'])
 <div class="row">
     <div class="col-xl-10 m-auto">
         <div class="card">
@@ -218,4 +219,7 @@ About
         <!-- end card -->
     </div> <!-- end col -->
 </div>
+@else 
+ <h5>You do not have permission to view this page.</h5>
+@endhasrole
 @endsection

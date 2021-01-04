@@ -51,6 +51,8 @@ class CheckoutController extends Controller
                     'product_id' => $item->product_id,
                     'amount'     => $item->cart_amount,
                     'created_at' => Carbon::now(),
+                    'size'       => $item->size,
+                    'color'      => $item->color,
                 ]);
 
               Product::where('id', $item->product_id)->decrement('quantity', $item->cart_amount);    

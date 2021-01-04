@@ -130,13 +130,16 @@ Category
                             <td>{{ $loop->index + 1 }}</td>
                             <td><strong>{{ ucfirst($category->name) }}</strong></td>
                             <td>
-                                <img src="{{ asset('uploads/categories') }}/{{ $category->image }}" alt="not found"
-                                    width="100">
+                                <img src="{{ asset('uploads/categories') }}/{{ $category->image }}" alt="not found" width="100">
                             </td>
                             <td>
+                                @can('edit')
                                 <a href="{{ route('categories.edit', $category->id) }}"><i
-                                        class="text-warning fas fa-edit mr-1"></i></a>
-                                <a href="{{ route('categories.delete', $category->id) }}"><i class="text-danger fas fa-trash"></i></a>
+                                    class="text-warning fas fa-edit mr-1"></i></a>
+                                @endcan
+                               @can('delete')
+                               <a href="{{ route('categories.delete', $category->id) }}"><i class="text-danger fas fa-trash"></i></a>
+                               @endcan
 
                             </td>
                         </tr>

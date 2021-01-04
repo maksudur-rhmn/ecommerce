@@ -224,121 +224,280 @@
                 <div id="sidebar-menu">
                     <!-- Left Menu Start -->
                     <ul class="metismenu list-unstyled" id="side-menu">
-                        <li class="menu-title">Menu</li>
+                      @hasrole('Admin')
+                      <li class="menu-title">Menu</li>
 
-                        <li>
-                            <a href="{{ url('/') }}">
-                                <i class="fas fa-globe"></i>
-                                <span>Visit Darcheni</span>
-                            </a>
-                        </li>
+                      <li>
+                          <a href="{{ url('/') }}">
+                              <i class="fas fa-globe"></i>
+                              <span>Visit Darcheni</span>
+                          </a>
+                      </li>
 
-                        <li class="@yield('dashboard_menu_active')">
-                            <a href="{{ route('dashboard') }}">
-                                <i class="uil-home-alt"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="uil-window-section"></i>
-                                <span>Orders</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="{{ route('orders.cod') }}">Cash on Delivery</a></li>
-                                <li><a href="{{ route('orders.bkash') }}">Bkash Orders</a></li>
-                            </ul>
-                    </li>
-                        <li class="@yield('category_menu_active')">
-                            <a href="{{ route('categories.index') }}">
-                                <i class="uil-shutter-alt"></i>
-                                <span>Category</span>
-                            </a>
-                        </li>
+                      <li class="@yield('dashboard_menu_active')">
+                          <a href="{{ route('dashboard') }}">
+                              <i class="uil-home-alt"></i>
+                              <span>Dashboard</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="javascript: void(0);" class="has-arrow waves-effect">
+                              <i class="uil-window-section"></i>
+                              <span>Orders</span>
+                          </a>
+                          <ul class="sub-menu" aria-expanded="false">
+                              <li><a href="{{ route('orders.cod') }}">Cash on Delivery</a></li>
+                              <li><a href="{{ route('orders.bkash') }}">Bkash Orders</a></li>
+                          </ul>
+                  </li>
+                      <li class="@yield('category_menu_active')">
+                          <a href="{{ route('categories.index') }}">
+                              <i class="uil-shutter-alt"></i>
+                              <span>Category</span>
+                          </a>
+                      </li>
 
-                        <li class="@yield('sub_category_menu_active')">
-                            <a href="{{ route('subcategories.index') }}">
-                                <i class="uil-streering"></i>
-                                <span>Sub category</span>
-                            </a>
-                        </li>
+                      <li class="@yield('sub_category_menu_active')">
+                          <a href="{{ route('subcategories.index') }}">
+                              <i class="uil-streering"></i>
+                              <span>Sub category</span>
+                          </a>
+                      </li>
 
-                        <li class="">
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="uil-shop"></i>
-                                <span>Products</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="{{ route('products.index') }}">Product list</a></li>
-                                <li><a href="{{ route('products.create') }}">Add Products</a></li>
-                            </ul>
-                        </li>
+                      <li class="">
+                          <a href="javascript: void(0);" class="has-arrow waves-effect">
+                              <i class="uil-shop"></i>
+                              <span>Products</span>
+                          </a>
+                          <ul class="sub-menu" aria-expanded="false">
+                              <li><a href="{{ route('products.index') }}">Product list</a></li>
+                              <li><a href="{{ route('products.create') }}">Add Products</a></li>
+                          </ul>
+                      </li>
 
-                        <li class="">
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="uil-500px"></i>
-                                <span>Blogs</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="{{ route('blog.index') }}">Blog list</a></li>
-                                <li><a href="{{ route('blog.create') }}">Add Blogs</a></li>
-                            </ul>
-                        </li>
+                      <li class="">
+                          <a href="javascript: void(0);" class="has-arrow waves-effect">
+                              <i class="uil-500px"></i>
+                              <span>Blogs</span>
+                          </a>
+                          <ul class="sub-menu" aria-expanded="false">
+                              <li><a href="{{ route('blog.index') }}">Blog list</a></li>
+                              <li><a href="{{ route('blog.create') }}">Add Blogs</a></li>
+                          </ul>
+                      </li>
 
-                        <li class="@yield('faqs_menu_active')">
-                            <a href="{{ route('faqs.index') }}">
-                                <i class="uil-file-question-alt"></i>
-                                <span>Faq</span>
-                            </a>
-                        </li>
-                        <li class="@yield('lg_banners_menu_active')">
-                            <a href="{{ route('lg-banners.index') }}">
-                                <i class="uil-file-question-alt"></i>
-                                <span>Large Banners</span>
-                            </a>
-                        </li>
-                        <li class="@yield('sm_banners_menu_active')">
-                            <a href="{{ route('sm-banners.index') }}">
-                                <i class="uil-file-question-alt"></i>
-                                <span>Small Banners</span>
-                            </a>
-                        </li>
+                      <li class="@yield('faqs_menu_active')">
+                          <a href="{{ route('faqs.index') }}">
+                              <i class="uil-file-question-alt"></i>
+                              <span>Faq</span>
+                          </a>
+                      </li>
+                      <li class="@yield('lg_banners_menu_active')">
+                          <a href="{{ route('lg-banners.index') }}">
+                              <i class="uil-file-question-alt"></i>
+                              <span>Large Banners</span>
+                          </a>
+                      </li>
+                      <li class="@yield('sm_banners_menu_active')">
+                          <a href="{{ route('sm-banners.index') }}">
+                              <i class="uil-file-question-alt"></i>
+                              <span>Small Banners</span>
+                          </a>
+                      </li>
 
-                        <li class="@yield('coupon_menu_active')">
-                            <a href="{{ route('coupon.index') }}">
-                                <i class="uil-compact-disc"></i>
-                                <span>Coupons</span>
-                            </a>
-                        </li>
-                        <li class="@yield('about_menu_active')">
-                            <a href="{{ route('abouts.index') }}">
-                                <i class="uil-compact-disc"></i>
-                                <span>About</span>
-                            </a>
-                        </li>
+                      <li class="@yield('coupon_menu_active')">
+                          <a href="{{ route('coupon.index') }}">
+                              <i class="uil-compact-disc"></i>
+                              <span>Coupons</span>
+                          </a>
+                      </li>
+                      <li class="@yield('about_menu_active')">
+                          <a href="{{ route('abouts.index') }}">
+                              <i class="uil-compact-disc"></i>
+                              <span>About</span>
+                          </a>
+                      </li>
 
-                        <li class="@yield('footer_menu_active')">
-                            <a href="{{ route('footer.index') }}">
-                                <i class="uil-align-center-v"></i>
-                                <span>Footer</span>
-                            </a>
-                        </li>
+                      <li class="@yield('footer_menu_active')">
+                          <a href="{{ route('footer.index') }}">
+                              <i class="uil-align-center-v"></i>
+                              <span>Footer</span>
+                          </a>
+                      </li>
 
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="uil-window-section"></i>
-                                <span>Layouts</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="layouts-horizontal.html">Horizontal</a></li>
-                                <li><a href="layouts-dark-sidebar.html">Dark Sidebar</a></li>
-                                <li><a href="layouts-compact-sidebar.html">Compact Sidebar</a></li>
-                                <li><a href="layouts-icon-sidebar.html">Icon Sidebar</a></li>
-                                <li><a href="layouts-boxed.html">Boxed Width</a></li>
-                                <li><a href="layouts-preloader.html">Preloader</a></li>
-                                <li><a href="layouts-colored-sidebar.html">Colored Sidebar</a></li>
-                            </ul>
-                    </li>
+                      <li class="@yield('roles_menu_active')">
+                          <a href="{{ route('roles.index') }}">
+                              <i class="uil-shutter-alt"></i>
+                              <span>Roles</span>
+                          </a>
+                      </li>
+
+                      <li>
+                          <a href="javascript: void(0);" class="has-arrow waves-effect">
+                              <i class="uil-window-section"></i>
+                              <span>Layouts</span>
+                          </a>
+                          <ul class="sub-menu" aria-expanded="false">
+                              <li><a href="layouts-horizontal.html">Horizontal</a></li>
+                              <li><a href="layouts-dark-sidebar.html">Dark Sidebar</a></li>
+                              <li><a href="layouts-compact-sidebar.html">Compact Sidebar</a></li>
+                              <li><a href="layouts-icon-sidebar.html">Icon Sidebar</a></li>
+                              <li><a href="layouts-boxed.html">Boxed Width</a></li>
+                              <li><a href="layouts-preloader.html">Preloader</a></li>
+                              <li><a href="layouts-colored-sidebar.html">Colored Sidebar</a></li>
+                          </ul>
+                     </li>
+                      @endhasrole
+                      @hasrole('Moderator')
+                      <li class="menu-title">Menu</li>
+
+                      <li>
+                          <a href="{{ url('/') }}">
+                              <i class="fas fa-globe"></i>
+                              <span>Visit Darcheni</span>
+                          </a>
+                      </li>
+
+                      <li class="@yield('dashboard_menu_active')">
+                          <a href="{{ route('dashboard') }}">
+                              <i class="uil-home-alt"></i>
+                              <span>Dashboard</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="javascript: void(0);" class="has-arrow waves-effect">
+                              <i class="uil-window-section"></i>
+                              <span>Orders</span>
+                          </a>
+                          <ul class="sub-menu" aria-expanded="false">
+                              <li><a href="{{ route('orders.cod') }}">Cash on Delivery</a></li>
+                              <li><a href="{{ route('orders.bkash') }}">Bkash Orders</a></li>
+                          </ul>
+                  </li>
+                      <li class="@yield('category_menu_active')">
+                          <a href="{{ route('categories.index') }}">
+                              <i class="uil-shutter-alt"></i>
+                              <span>Category</span>
+                          </a>
+                      </li>
+
+                      <li class="@yield('sub_category_menu_active')">
+                          <a href="{{ route('subcategories.index') }}">
+                              <i class="uil-streering"></i>
+                              <span>Sub category</span>
+                          </a>
+                      </li>
+
+                      <li class="">
+                          <a href="javascript: void(0);" class="has-arrow waves-effect">
+                              <i class="uil-shop"></i>
+                              <span>Products</span>
+                          </a>
+                          <ul class="sub-menu" aria-expanded="false">
+                              <li><a href="{{ route('products.index') }}">Product list</a></li>
+                              <li><a href="{{ route('products.create') }}">Add Products</a></li>
+                          </ul>
+                      </li>
+
+                      <li class="">
+                          <a href="javascript: void(0);" class="has-arrow waves-effect">
+                              <i class="uil-500px"></i>
+                              <span>Blogs</span>
+                          </a>
+                          <ul class="sub-menu" aria-expanded="false">
+                              <li><a href="{{ route('blog.index') }}">Blog list</a></li>
+                              <li><a href="{{ route('blog.create') }}">Add Blogs</a></li>
+                          </ul>
+                      </li>
+
+                      <li class="@yield('faqs_menu_active')">
+                          <a href="{{ route('faqs.index') }}">
+                              <i class="uil-file-question-alt"></i>
+                              <span>Faq</span>
+                          </a>
+                      </li>
+                      <li class="@yield('lg_banners_menu_active')">
+                          <a href="{{ route('lg-banners.index') }}">
+                              <i class="uil-file-question-alt"></i>
+                              <span>Large Banners</span>
+                          </a>
+                      </li>
+                      <li class="@yield('sm_banners_menu_active')">
+                          <a href="{{ route('sm-banners.index') }}">
+                              <i class="uil-file-question-alt"></i>
+                              <span>Small Banners</span>
+                          </a>
+                      </li>
+
+                      <li class="@yield('coupon_menu_active')">
+                          <a href="{{ route('coupon.index') }}">
+                              <i class="uil-compact-disc"></i>
+                              <span>Coupons</span>
+                          </a>
+                      </li>
+                      @endhasrole
+                      @hasrole('Editor')
+                      <li class="menu-title">Menu</li>
+
+                      <li>
+                          <a href="{{ url('/') }}">
+                              <i class="fas fa-globe"></i>
+                              <span>Visit Darcheni</span>
+                          </a>
+                      </li>
+
+                      <li class="@yield('dashboard_menu_active')">
+                          <a href="{{ route('dashboard') }}">
+                              <i class="uil-home-alt"></i>
+                              <span>Dashboard</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="javascript: void(0);" class="has-arrow waves-effect">
+                              <i class="uil-window-section"></i>
+                              <span>Orders</span>
+                          </a>
+                          <ul class="sub-menu" aria-expanded="false">
+                              <li><a href="{{ route('orders.cod') }}">Cash on Delivery</a></li>
+                              <li><a href="{{ route('orders.bkash') }}">Bkash Orders</a></li>
+                          </ul>
+                  </li>
+                      <li class="@yield('category_menu_active')">
+                          <a href="{{ route('categories.index') }}">
+                              <i class="uil-shutter-alt"></i>
+                              <span>Category</span>
+                          </a>
+                      </li>
+
+                      <li class="@yield('sub_category_menu_active')">
+                          <a href="{{ route('subcategories.index') }}">
+                              <i class="uil-streering"></i>
+                              <span>Sub category</span>
+                          </a>
+                      </li>
+
+                      <li class="">
+                          <a href="javascript: void(0);" class="has-arrow waves-effect">
+                              <i class="uil-shop"></i>
+                              <span>Products</span>
+                          </a>
+                          <ul class="sub-menu" aria-expanded="false">
+                              <li><a href="{{ route('products.index') }}">Product list</a></li>
+                              <li><a href="{{ route('products.create') }}">Add Products</a></li>
+                          </ul>
+                      </li>
+
+                      <li class="">
+                          <a href="javascript: void(0);" class="has-arrow waves-effect">
+                              <i class="uil-500px"></i>
+                              <span>Blogs</span>
+                          </a>
+                          <ul class="sub-menu" aria-expanded="false">
+                              <li><a href="{{ route('blog.index') }}">Blog list</a></li>
+                              <li><a href="{{ route('blog.create') }}">Add Blogs</a></li>
+                          </ul>
+                      </li>
+                      @endhasrole
                     </ul>
                 </div>
                 <!-- Sidebar -->

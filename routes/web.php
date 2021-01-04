@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\ProductController;
@@ -15,7 +17,6 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\LargeBannerController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SmallBannerController;
 use App\Http\Controllers\SubCategoryController;
 
@@ -120,3 +121,11 @@ Route::get('/sm-banners/{id}/delete', [SmallBannerController::class, 'delete'])-
 Route::get('/order/cod', [OrderController::class, 'cod'])->name('orders.cod');
 Route::get('/order/bkash', [OrderController::class, 'bkash'])->name('orders.bkash');
 Route::post('/order/update', [OrderController::class, 'update'])->name('orders.update');
+
+// RoleController
+Route::get('roles', [RoleController::class,'index'])->name('roles.index');
+Route::get('create/permissions', [RoleController::class,'createPermissions']);
+Route::post('roles/store', [RoleController::class,'store'])->name('roles.store');
+Route::post('roles/assign', [RoleController::class,'roleAssign'])->name('roles.assign');
+Route::get('/roles/{user_id}/revoke', [RoleController::class,'roleRevoke'])->name('roles.revoke');
+// RoleController ENDS 

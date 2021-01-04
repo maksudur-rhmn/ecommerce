@@ -18,6 +18,8 @@ class CreateCartsTable extends Migration
             $table->ipAddress('ip_address');
             $table->integer('cart_amount');
             $table->integer('product_id');
+            $table->string('size')->nullable();
+            $table->string('color')->nullable();
             $table->timestamps();
         });
     }

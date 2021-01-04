@@ -108,7 +108,9 @@
                                     @endforeach
                                     @endif
                                     <li style="margin-left: 20px;">
-                                        <select class="select_option">
+                                        <form method="POST" action="{{ route('cart.store') }}">
+                                            @csrf
+                                        <select name="color" class="select_option">
                                             <option value="">Select one color</option>
                                             @if($product->hasColors->colors != "")
                                             @foreach(explode(',', $product->hasColors->colors) as $info) 
@@ -123,7 +125,7 @@
 
                             <div class="product_variant size">
                                 <label>size</label>
-                                <select class="select_option">
+                                <select name="size" class="select_option">
                                     @if($product->hasSizes->size != "")
                                     @foreach(explode(' ', $product->hasSizes->size) as $info) 
                                     <option value="{{ $info }}">{{ ucfirst($info) }}</option>
@@ -132,20 +134,13 @@
                                 </select>
                             </div>
                             <div class="product_variant quantity">
-                                <form method="POST" action="{{ route('cart.store') }}">
-                                    @csrf
+                                
                                 <label>quantity</label>
                                 <input min="1" max="100" value="1" type="number" name="cart_amount">
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                 <button class="button" type="submit">add to cart</button>
                                 </form>
                             </div>
-                            <div class=" product_d_action">
-                                <ul>
-                                    <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
-                                </ul>
-                            </div>
-
                         <div class="product_d_meta">
                             <span>SKU: N/A</span>
                             <span>Category: <a href="{{ route('frontend.products', $product->belongTo->hasCategory->name) }}">{{ ucfirst($product->belongTo->hasCategory->name) }}</a></span>
@@ -435,29 +430,48 @@
                              <div class="variants_selects">
                                  <div class="variants_size">
                                      <h2>size</h2>
-                                     <select class="select_option">
-                                         @if($product->hasSizes->size != "")
-                                         @foreach(explode(' ', $product->hasSizes->size) as $info) 
-                                         <option value="{{ $info }}">{{ ucfirst($info) }}</option>
-                                         @endforeach
-                                         @endif
-                                     </select>
-                                 </div>
-                                 <div class="variants_color">
-                                     <h2>color</h2>
-                                     <select class="select_option">
-                                         @if($product->hasColors->colors != "")
-                                         @foreach(explode(',', $product->hasColors->colors) as $info) 
-                                         <option value="{{ $info }}">{{ ucfirst($info) }}</option>
-                                         @endforeach
-                                         @endif
-                                     </select>
-                                 </div>
-                                 <div class="modal_add_to_cart">
-                                     <form action="#">
-                                         <input min="1" max="100" step="2" value="1" type="number">
-                                         <button type="submit">add to cart</button>
-                                     </form>
+                                     <form method="POST" action="{{ route('cart.store') }}">
+                                        @csrf
+                                         <select name="size" class="select_option">
+                                             @if($product->hasSizes->size != "")
+                                             @foreach(explode(' ', $product->hasSizes->size) as $info) 
+                                             <option value="{{ $info }}">{{ ucfirst($info) }}</option>
+                                             @endforeach
+                                             @endif
+                                         </select>
+                                     </div>
+                                     <div class="variants_color">
+                                         <h2>color</h2>
+                                         <select name="color" class="select_option">
+                                             @if($product->hasColors->colors != "")
+                                             @foreach(explode(',', $product->hasColors->colors) as $info) 
+                                             <option value="{{ $info }}">{{ ucfirst($info) }}</option>
+                                             @endforeach
+                                             @endif
+                                         </select>
+                                     </div>
+                                     <div class="modal_add_to_cart">
+                                        
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <input min="1" max="100" value="1" type="number" name="cart_amount">
+                                            <button 
+                                                style="   background: none;
+                                                border: 1px solid #232323;
+                                                margin-left: 10px;
+                                                font-size: 12px;
+                                                font-weight: 700;
+                                                height: 45px;
+                                                width: 230px;
+                                                line-height: 18px;
+                                                padding: 10px 15px;
+                                                text-transform: uppercase;
+                                                background: #232323;
+                                                color: #ffffff;
+                                                -webkit-transition: 0.3s;
+                                                transition: 0.3s;
+                                                cursor: pointer;"
+                                            type="submit">add to cart</button>
+                                        </form>
                                  </div>
                              </div>
                              <div class="modal_social">
