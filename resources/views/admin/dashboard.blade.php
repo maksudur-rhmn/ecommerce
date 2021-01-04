@@ -95,7 +95,7 @@
 @endif
 
 <div class="row">
-@hasrole('Admin')
+    @if(auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Moderator'))
 <div class="col-xl-10 m-auto">
     <div class="card">
         <div class="card-body">
@@ -179,7 +179,9 @@
         </div>
     </div>
 </div> <!-- end col -->
-@endhasrole
+@else 
+<h5>Only Admin & Moderator has access to the user list.</h5>
+@endif
 
 </div>
 
