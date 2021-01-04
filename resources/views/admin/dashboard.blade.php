@@ -95,7 +95,7 @@
 @endif
 
 <div class="row">
- @role('Admin')
+@hasrole('Admin')
 <div class="col-xl-10 m-auto">
     <div class="card">
         <div class="card-body">
@@ -179,9 +179,7 @@
         </div>
     </div>
 </div> <!-- end col -->
-@else 
-<h5>Only Admin & Moderator has access to the user list.</h5>
-@endrole
+@endhasrole
 
 </div>
 
