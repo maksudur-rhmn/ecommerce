@@ -87,7 +87,7 @@ About
                         <div class="col-md-12">
                             <div class="form-group position-relative">
                                 <label for="validationTooltip03">Bkash number</label>
-                                <input name="phone" type="text" class="form-control" id="validationTooltip03"
+                                <input name="bkash_number" type="text" class="form-control" id="validationTooltip03"
                                     value="{{ $footer->bkash_number }}" required>
                                 <div class="invalid-tooltip">
                                     Please provide a valid bkash number.
