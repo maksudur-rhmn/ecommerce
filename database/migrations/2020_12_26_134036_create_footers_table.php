@@ -16,6 +16,7 @@ class CreateFootersTable extends Migration
         Schema::create('footers', function (Blueprint $table) {
             $table->id();
             $table->string('phone');
+            $table->string('bkash_number');
             $table->string('address');
             $table->string('email');
             $table->string('facebook');

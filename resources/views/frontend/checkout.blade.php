@@ -138,11 +138,11 @@
 
                                <div class="py-3 text-center">
                                    <img src="{{ asset('uploads/bkash.png') }}" alt="">
-                                   <h2>+88017111234567 (Personal)</h2>
+                                   <h2>{{ footer()->bkash_number }}</h2>
                                </div>
                                <div class="py-3">
                                 <label>Trx ID (Only Applicable if you have paid via Bkash, Nagad, or Rocket)<span></span></label>
-                                   <input type="text" placeholder="Please provide trx id if you have paid by bkash">
+                                   <input name="trx_id" type="text" placeholder="Please provide trx id if you have paid by bkash">
                                </div>
                                <div class="py-3">
                                    <div class="alert alert-warning">Please make sure you have given the correct trx id. We will confirm your order within 4-5 hours after the order is placed.</div>

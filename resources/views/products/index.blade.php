@@ -127,11 +127,7 @@ Products
                             <td> @convert($product->discount_price) </td>
                             <td>{{ ucfirst($product->featured) }}</td>
                             <td>
-                                @if($product->quantity > 0)
-                                <span class="badge badge-success">In-Stock</span>
-                                @else 
-                                <span class="badge badge-danger">Out-Of-Stock</span>
-                                @endif
+                               {{ $product->quantity }} pcs.
                             </td>
                             <td>
                                 <img src="{{ asset('uploads/products') }}/{{ $product->thumbnail_image }}" alt="not found"

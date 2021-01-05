@@ -89,10 +89,10 @@
                             </div>
                             <div class="price_box">
                                 @if($product->discount_price)
-                                <span class="current_price">$@convert($product->discount_price) </span>
-                                <span class="old_price">$@convert($product->price)</span>
+                                <span class="current_price">BDT @convert($product->discount_price) </span>
+                                <span class="old_price">BDT @convert($product->price)</span>
                                 @else
-                                <span class="current_price">$@convert($product->price) </span>
+                                <span class="current_price">BDT @convert($product->price) </span>
                                 @endif
                             </div>
                             <div class="product_desc">
@@ -132,7 +132,10 @@
                                     @endforeach
                                     @endif
                                 </select>
+
+                                
                             </div>
+                            <strong>Available: </strong> {{ $product->quantity }} pcs.
                             <div class="product_variant quantity">
                                 
                                 <label>quantity</label>
