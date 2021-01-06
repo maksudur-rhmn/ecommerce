@@ -62,7 +62,7 @@ About
     {{ session('success') }}
 </div>
 @endif
-@hasrole(['Admin', 'Moderator'])
+@hasrole('Admin')
 <div class="row">
     <div class="col-xl-10 m-auto">
         <div class="card">
